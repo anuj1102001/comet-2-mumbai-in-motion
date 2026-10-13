@@ -1,20 +1,26 @@
-import { DetailView } from "@/components/DetailView";
-import { Journey } from "@/components/Journey";
 import { Footer, Nav } from "@/components/Nav";
-import { Packaging } from "@/components/Packaging";
-import { Product } from "@/components/Product";
+import { Collection } from "@/components/sections/Collection";
+import { Details } from "@/components/sections/Details";
+import { Hero } from "@/components/sections/Hero";
+import { Packaging } from "@/components/sections/Packaging";
+import { Postcard } from "@/components/sections/Postcard";
+import { Silhouette } from "@/components/sections/Silhouette";
+import { Specs } from "@/components/sections/Specs";
 
 export default function Home() {
   return (
     <>
       <Nav />
       <main>
-        <Journey />
+        <Hero />
+        <Silhouette />
+        <Postcard />
+        <Details />
         <Packaging />
-        <Product />
+        <Collection />
+        <Specs />
       </main>
       <Footer />
-      <DetailView />
     </>
   );
 }

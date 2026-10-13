@@ -1,0 +1,150 @@
+"use client";
+import { motion, useMotionTemplate, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { colorwayById } from "@/lib/colorways";
+import { SHOTS } from "@/lib/media";
+import { useStore } from "@/lib/store";
+import { Backdrop, Canopy, Commuter, Crowd, Platform, SHOE_POINT, Train } from "../art/CityScene";
+import { CometLogo } from "../brand/Logo";
+import { Magnetic, MediaTag } from "../ui";
+
+/**
+ * Chapters 1–2: the city, then the reveal.
+ *
+ * The scene plays on its own (time-based, not scrubbed), so nothing waits on
+ * scroll. Scrolling 1.6 screens pushes the camera toward the commuter's shoe
+ * and cross-fades to the product on paper. Only transform and opacity animate.
+ * When the Higgsfield footage lands (lib/media.ts), the video replaces the
+ * storyboard animatic in the same slot.
+ */
+export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const cw = colorwayById(useStore((s) => s.colorway));
+  const shot = SHOTS.city;
+
+  const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start start", "end end"] });
+
+  // where the commuter's shoe lands on screen (the SVG uses "slice" scaling)
+  const [origin, setOrigin] = useState({ x: 0.52, y: 0.93 });
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const measure = () => {
+      const w = el.clientWidth;
+      const h = el.clientHeight;
+      const s = Math.max(w / 1600, h / 900);
+      setOrigin({ x: ((w - 1600 * s) / 2 + SHOE_POINT.x * s) / w, y: ((h - 900 * s) / 2 + SHOE_POINT.y * s) / h });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const scale = useTransform(p, [0.08, 0.62], [1, 3.2], { ease: (t) => t * t });
+  const lift = useTransform(p, [0.08, 0.62], ["0%", "-34%"]);
+  const vignette = useTransform(p, [0.05, 0.4], [0, 0.78]);
+  const product = useTransform(p, [0.56, 0.68], [0, 1]);
+  const productScale = useTransform(p, [0.5, 0.9], [1.06, 1]);
+  const intro = useTransform(p, [0, 0.16], [1, 0]);
+  const introY = useTransform(p, [0, 0.16], [0, -30]);
+  const focusCopy = useTransform(p, [0.2, 0.3, 0.42, 0.5], [0, 1, 1, 0]);
+  const revealCopy = useTransform(p, [0.7, 0.82], [0, 1]);
+  const spot = useMotionTemplate`radial-gradient(circle at ${origin.x * 100}% ${origin.y * 100}%, transparent 8%, rgba(25,24,22,.55) 34%, rgba(25,24,22,.92) 70%)`;
+
+  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+
+  return (
+    <section ref={ref} id="city" aria-label="The city and the reveal" className={reduce ? "relative" : "relative h-[240svh]"}>
+      <span id="reveal" aria-hidden className="absolute left-0 top-[62%] h-px w-px" />
+      <div ref={stageRef} className={`${reduce ? "relative" : "sticky top-0"} h-[100svh] overflow-hidden bg-char`}>
+        {/* the city */}
+        <motion.div
+          className="absolute inset-0 will-change-transform"
+          style={reduce ? undefined : { scale, y: lift, transformOrigin: `${origin.x * 100}% ${origin.y * 100}%` }}
+        >
+          {shot.ready ? (
+            <video className="h-full w-full object-cover" src={shot.video} poster={shot.poster} autoPlay muted loop playsInline preload="metadata" />
+          ) : (
+            <Animatic colors={cw.colors} still={!!reduce} />
+          )}
+        </motion.div>
+        {!reduce && <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ opacity: vignette, backgroundImage: spot }} />}
+
+        {/* the product stage the city resolves into */}
+        <motion.div aria-hidden={false} className="absolute inset-0 grid place-items-center bg-paper" style={reduce ? { opacity: 0 } : { opacity: product }}>
+          <motion.figure style={reduce ? undefined : { scale: productScale }} className="w-[min(88vw,1100px)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={cw.hero} alt={`COMET 2.0 ${cw.name} sneaker, lateral side — concept render`} className="feather w-full mix-blend-multiply" />
+          </motion.figure>
+          <motion.div style={{ opacity: revealCopy }} className="absolute inset-x-0 bottom-[9svh] px-5 text-center">
+            <p className="eyebrow text-ink-3">02 · The reveal</p>
+            <p className="h-display mt-3 text-[clamp(2rem,4.6vw,4rem)] text-ink">A city that never stops.</p>
+          </motion.div>
+          <div className="absolute bottom-4 left-4 sm:left-8">
+            <MediaTag>Concept render</MediaTag>
+          </div>
+        </motion.div>
+
+        {/* opening copy — HTML, never part of the footage */}
+        <motion.div style={reduce ? undefined : { opacity: intro, y: introY }} className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-char/85 via-char/30 to-transparent px-5 pb-16 text-paper sm:px-10 sm:pb-20">
+          <CometLogo size="xl" />
+          <p className="wide mt-6 text-sm font-semibold tracking-[0.42em] text-paper/90 sm:text-base">MUMBAI IN MOTION</p>
+          <p className="mt-4 max-w-lg text-[17px] leading-relaxed text-paper/80">“A city that never stops. A story that moves with every step.”</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Magnetic href="#silhouette" className="btn bg-paper text-ink hover:bg-saffron" onClick={(e) => (e.preventDefault(), go("silhouette"))}>
+              Explore the sneaker <span aria-hidden>→</span>
+            </Magnetic>
+            <Magnetic href="#postcard" className="btn btn-line text-paper hover:!bg-paper hover:!text-ink" onClick={(e) => (e.preventDefault(), go("postcard"))}>
+              Discover the story
+            </Magnetic>
+          </div>
+        </motion.div>
+
+        <motion.div style={reduce ? { opacity: 0 } : { opacity: focusCopy }} className="pointer-events-none absolute left-5 top-[24%] max-w-sm text-paper sm:left-10">
+          <p className="eyebrow text-paper/70">Somewhere in the crowd</p>
+          <p className="h-display mt-3 text-[clamp(2rem,4vw,3.4rem)]">One detail moves differently.</p>
+        </motion.div>
+
+        {!shot.ready && (
+          <motion.div style={reduce ? undefined : { opacity: intro }} className="absolute right-4 top-20 sm:right-8">
+            <MediaTag tone="dark">Storyboard animatic · footage pending</MediaTag>
+          </motion.div>
+        )}
+        <button onClick={() => go("silhouette")} className="btn absolute bottom-5 right-4 z-10 border border-white/25 bg-char/60 py-2 text-xs text-paper hover:bg-paper hover:text-ink sm:right-8">
+          Skip intro <span aria-hidden>↓</span>
+        </button>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Temporary stand-in for Shot A/B: the platform drawn in the boards' etching
+ * language. The train glides in once and settles; the crowd breathes. CSS
+ * animations only, no filters.
+ */
+function Animatic({ colors, still }: { colors: Parameters<typeof Commuter>[0]["colors"]; still: boolean }) {
+  return (
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden>
+      <Backdrop />
+      <g className={still ? undefined : "anim-drift"}>
+        <Canopy />
+      </g>
+      <g className={still ? undefined : "anim-train"} style={still ? { transform: "translateX(-300px)" } : undefined}>
+        <Train />
+      </g>
+      <Platform />
+      <g className={still ? undefined : "anim-breathe"}>
+        <Crowd seed={3} count={16} y={800} scale={1.05} spread={2100} />
+      </g>
+      <Commuter colors={colors} />
+      <g className={still ? undefined : "anim-breathe-2"}>
+        <Crowd seed={8} count={7} y={1010} scale={2.1} spread={2400} x0={-160} density={2} gap={[560, 1000]} />
+      </g>
+    </svg>
+  );
+}
+

@@ -1,12 +1,17 @@
 import type { Detail } from "./details";
 
-/** Design-breakdown entries for the collectible box (shown in the same detail view). */
-const base = { chapter: 0, zone: "outsole" as const, anchors: {} };
+export type BoxStage = "closed" | "open" | "inserts";
+export type BoxDetail = Detail & { stage: BoxStage; spot: { x: number; y: number } };
 
-export const BOX_DETAILS: Record<string, Detail> = {
+/** Packaging details, each pinned to a point (in %) on one of the board's packaging renders. */
+const base = { zone: "outsole" as const };
+
+export const BOX_DETAILS: Record<string, BoxDetail> = {
   cover: {
     ...base,
     id: "cover",
+    stage: "closed",
+    spot: { x: 38, y: 28 },
     title: "The Cover Poster",
     hindi: "मुंबई",
     location: "Box lid",
@@ -21,6 +26,8 @@ export const BOX_DETAILS: Record<string, Detail> = {
   side: {
     ...base,
     id: "side",
+    stage: "closed",
+    spot: { x: 46, y: 78 },
     title: "Side Panels",
     location: "Long sides of the box",
     inspiration: "Railway timetables and the skyline seen from a moving train.",
@@ -34,6 +41,8 @@ export const BOX_DETAILS: Record<string, Detail> = {
   tissue: {
     ...base,
     id: "tissue",
+    stage: "open",
+    spot: { x: 50, y: 62 },
     title: "Toile Tissue",
     location: "Inside, wrapping the shoes",
     inspiration: "Indigo toile-de-Jouy, redrawn with Mumbai scenes instead of pastoral ones: trains, palms, the Gateway, the sea.",
@@ -46,6 +55,8 @@ export const BOX_DETAILS: Record<string, Detail> = {
   insert: {
     ...base,
     id: "insert",
+    stage: "inserts",
+    spot: { x: 24, y: 42 },
     title: "Postcard & Hang Tag",
     location: "Under the lid",
     inspiration: "A picture postcard you could actually post, and a second-class ticket stub.",
@@ -58,6 +69,8 @@ export const BOX_DETAILS: Record<string, Detail> = {
   bag: {
     ...base,
     id: "bag",
+    stage: "inserts",
+    spot: { x: 82, y: 52 },
     title: "Dust Bag",
     location: "Inside the box",
     inspiration: "Indigo-dyed cotton and the Comet star.",

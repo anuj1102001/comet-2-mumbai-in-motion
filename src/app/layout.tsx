@@ -2,13 +2,16 @@ import type { Metadata, Viewport } from "next";
 import { fontVars } from "@/lib/fonts";
 import "./globals.css";
 
+const site = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3300";
+
 export const metadata: Metadata = {
-  title: "COMET — Mumbai in Motion",
+  metadataBase: new URL(site),
+  title: "COMET 2.0 — Mumbai in Motion",
   description:
-    "An immersive 3D product story for an original Comet sneaker concept inspired by Mumbai's local trains, CST, vintage postcards and street lettering. A UX/UI and product design case study.",
+    "COMET 2.0 — Mumbai in Motion: a cinematic product story for an original sneaker concept inspired by Mumbai's local trains, CST, vintage postcards and street lettering. A UX/UI and product design case study.",
   openGraph: {
-    title: "COMET — Mumbai in Motion",
-    description: "A city that never stops. A story that moves with every step.",
+    title: "COMET 2.0 — Mumbai in Motion",
+    description: "A city that never stops.",
     images: ["/img/board-2.webp"],
   },
 };
