@@ -174,3 +174,11 @@ main > section, footer { background-image: var(--grain); background-size: 160px 
   -webkit-mask-image: radial-gradient(ellipse 62% 66% at 50% 52%, #000 70%, transparent 100%);
   mask-image: radial-gradient(ellipse 62% 66% at 50% 52%, #000 70%, transparent 100%);
 }
+
+/* Fades a contained photo's top and bottom edges into the page (narrow screens). */
+@media (max-width: 767px) {
+  .feather-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  }
+}

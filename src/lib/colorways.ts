@@ -23,8 +23,13 @@ export type Colorway = {
   palette: { name: string; hex: string }[];
   /** Ordered product views for the silhouette sequence. */
   views: { src: string; label: string; note: string }[];
-  /** Hero render used for the reveal and campaign frame. */
+  /** Hero render used for edition cards. */
   hero: string;
+  /**
+   * Studio photographs made from this edition's board renders (design/photo):
+   * the cutout is unchanged; set, light, shadows and grade are photographic.
+   */
+  studio: { src: string; label: string; note: string; tone: "light" | "dark" }[];
   details: string[];
 };
 
@@ -46,6 +51,10 @@ export const COLORWAYS: Colorway[] = [
       { name: "Gum", hex: "#7a4a29" },
     ],
     hero: "/img/local-lateral.webp",
+    studio: [
+      { src: "/img/photo/01-local-lateral-hero.webp", label: "Studio · lateral", note: "The everyday edition on a cream paper sweep.", tone: "light" },
+      { src: "/img/photo/02-local-medial.webp", label: "Studio · medial", note: "Vada pav, the cricketer and the terminus on the inside.", tone: "light" },
+    ],
     views: [
       { src: "/img/local-lateral.webp", label: "Lateral", note: "The train, the station sign and the star — the side the city sees." },
       { src: "/img/local-medial.webp", label: "Medial", note: "Vada pav, the cricketer and the terminus — the side you see." },
@@ -73,6 +82,7 @@ export const COLORWAYS: Colorway[] = [
       { name: "Gum", hex: "#6e4527" },
     ],
     hero: "/img/postcard-shoe.webp",
+    studio: [{ src: "/img/photo/03-postcard-lateral.webp", label: "Studio · lateral", note: "Air-mail lettering and natural laces on a cream sweep.", tone: "light" }],
     views: [
       { src: "/img/postcard-shoe.webp", label: "Lateral", note: "मुंबई लोकल over the rake, the bat, वड़ा पाव at the toe." },
       { src: "/img/postcard-d-heel.webp", label: "Heel", note: "Embroidered MUMBAI between two stars." },
@@ -99,6 +109,7 @@ export const COLORWAYS: Colorway[] = [
       { name: "Postmark red", hex: "#a8442e" },
     ],
     hero: "/img/harbour-lateral.webp",
+    studio: [{ src: "/img/photo/04-harbour-closeup.webp", label: "Studio · close-up", note: "The harbour panorama on a deep navy set.", tone: "dark" }],
     views: [
       { src: "/img/harbour-lateral.webp", label: "Lateral", note: "Ferries, skyline and the Gateway in one continuous view." },
       { src: "/img/harbour-medial.webp", label: "Medial", note: "The panorama continues around the inside." },

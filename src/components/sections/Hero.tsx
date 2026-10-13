@@ -26,6 +26,7 @@ export function Hero() {
   const reduce = useReduced();
   const cw = colorwayById(useStore((s) => s.colorway));
   const shot = SHOTS.city;
+  const photo = cw.studio[0];
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   // sprung progress: the camera push glides instead of tracking each wheel notch
@@ -82,17 +83,27 @@ export function Hero() {
         {!reduce && <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ opacity: vignette, backgroundImage: spot }} />}
 
         {/* the product stage the city resolves into */}
-        <motion.div aria-hidden={false} className="absolute inset-0 grid place-items-center bg-paper" style={reduce ? { opacity: 0 } : { opacity: product }}>
-          <motion.figure style={reduce ? undefined : { scale: productScale }} className="w-[min(88vw,1100px)]">
+        <motion.div
+          aria-hidden={false}
+          className={`absolute inset-0 overflow-hidden ${photo.tone === "dark" ? "bg-[#18202f]" : "bg-[#e3d9c5]"}`}
+          style={reduce ? { opacity: 0 } : { opacity: product }}
+        >
+          {/* the studio photograph fills the frame on wide screens and is shown whole on narrow ones */}
+          <motion.figure style={reduce ? undefined : { scale: productScale }} className="absolute inset-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={cw.hero} alt={`COMET 2.0 ${cw.name} sneaker, lateral side — concept render`} className="feather w-full" />
+            <img
+              src={photo.src}
+              alt={`COMET 2.0 ${cw.name} sneaker in the studio`}
+              decoding="async"
+              className="feather-y h-full w-full object-contain md:object-cover"
+            />
           </motion.figure>
-          <motion.div style={{ opacity: revealCopy }} className="absolute inset-x-0 bottom-[9svh] px-5 text-center">
-            <p className="eyebrow text-ink-3">02 · The reveal</p>
-            <p className="h-display mt-3 text-[clamp(2rem,4.6vw,4rem)] text-ink">A city that never stops.</p>
+          <motion.div style={{ opacity: revealCopy }} className="absolute inset-x-0 top-[13svh] px-5 text-center">
+            <p className={`eyebrow ${photo.tone === "dark" ? "text-paper/70" : "text-ink-3"}`}>02 · The reveal</p>
+            <p className={`h-display mt-3 text-[clamp(2rem,4.6vw,4rem)] ${photo.tone === "dark" ? "text-paper" : "text-ink"}`}>A city that never stops.</p>
           </motion.div>
           <div className="absolute bottom-4 left-4 sm:left-8">
-            <MediaTag>Concept render</MediaTag>
+            <MediaTag tone={photo.tone === "dark" ? "dark" : "light"}>Studio composite · from the board render</MediaTag>
           </div>
         </motion.div>
 

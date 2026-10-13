@@ -34,6 +34,9 @@ export function Specs() {
   const cw = colorwayById(colorway);
   const [picked, setPicked] = useState({ cw: colorway, i: 0 });
   const view = picked.cw === colorway ? picked.i : 0;
+  // studio photographs first, then the board renders — each labelled for what it is
+  const gallery = [...cw.studio.map((p) => ({ ...p, kind: "studio" as const })), ...cw.views.map((v) => ({ ...v, kind: "render" as const }))];
+  const g = gallery[Math.min(view, gallery.length - 1)];
   const [size, setSize] = useState(8);
   const s = SIZES.find((x) => x.uk === size)!;
 
@@ -46,10 +49,10 @@ export function Specs() {
             <div className="relative aspect-[5/4] overflow-hidden rounded-[22px] border border-line bg-paper-2">
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.img
-                  key={cw.views[view].src}
-                  src={cw.views[view].src}
-                  alt={`${cw.name}, ${cw.views[view].label.toLowerCase()} view — concept render`}
-                  className="feather-soft absolute inset-0 h-full w-full object-contain p-6"
+                  key={g.src}
+                  src={g.src}
+                  alt={g.kind === "studio" ? `${cw.name}, ${g.label.toLowerCase()} — studio photograph` : `${cw.name}, ${g.label.toLowerCase()} view — concept render`}
+                  className={g.kind === "studio" ? "absolute inset-0 h-full w-full object-cover" : "feather-soft absolute inset-0 h-full w-full object-contain p-6"}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -57,11 +60,11 @@ export function Specs() {
                 />
               </AnimatePresence>
               <div className="absolute left-4 top-4">
-                <MediaTag>Concept render · {cw.views[view].label}</MediaTag>
+                <MediaTag>{g.kind === "studio" ? "Studio composite" : "Concept render"} · {g.label}</MediaTag>
               </div>
             </div>
             <div className="no-scrollbar mt-3 flex gap-2 overflow-x-auto" role="group" aria-label="Product angles">
-              {cw.views.map((v, i) => (
+              {gallery.map((v, i) => (
                 <button
                   key={v.src}
                   onClick={() => setPicked({ cw: colorway, i })}
@@ -74,7 +77,7 @@ export function Specs() {
                 </button>
               ))}
             </div>
-            <p className="mt-3 text-xs text-ink-3">Views are rendered images from the approved design boards. There is no interactive 3D model on this page.</p>
+            <p className="mt-3 text-xs text-ink-3">Studio frames place the approved board renders on a photographic set; the other views are the board renders themselves. Nothing here is a photograph of a manufactured shoe, and there is no 3D model on this page.</p>
           </div>
 
           <div>
@@ -174,7 +177,7 @@ export function Specs() {
 
             <Link href="#packaging" className="group mt-8 flex items-center gap-4 rounded-2xl border border-line p-3 hover:border-ink">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/img/box-open.webp" alt="" loading="lazy" className="h-20 w-28 rounded-xl object-cover" />
+              <img src="/img/photo/05-box-terracotta.webp" alt="" loading="lazy" className="h-20 w-28 rounded-xl object-cover" />
               <span className="flex-1">
                 <span className="block text-sm font-semibold text-ink">Ships in the poster box</span>
                 <span className="block text-xs text-ink-3">Toile tissue, postcard, hang tag and dust bag</span>
