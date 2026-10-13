@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>COMET 2.0 — Mumbai in Motion · launch reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Yatra+One&display=block" rel="stylesheet" />
+<style>
+  /*
+   * Launch reel, rendered frame by frame by scripts/reel.mjs.
+   * Nothing animates on its own: window.render(t) poses every element for
+   * time t (seconds), so each exported frame is exact. ?w=&h= picks the format.
+   */
+  :root { --paper:#eee5d3; --ink:#1f1d1b; --navy:#1b2643; --terra:#b3533a; --char:#191816; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: var(--w); height: var(--h); overflow: hidden; background: var(--char); }
+  body { font-family: "Archivo", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .stage { position: relative; width: var(--w); height: var(--h); overflow: hidden; }
+  .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+  .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 53%; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; letter-spacing: .22em; text-transform: uppercase; }
+  .display { font-family: "DM Serif Display", serif; line-height: .95; letter-spacing: -.01em; }
+  .deva { font-family: "Yatra One", serif; }
+  .wide { font-stretch: 125%; }
+  .line { display: block; will-change: transform, opacity; }
+  .caption { position: absolute; }
+  .scrim { position: absolute; inset: 0; pointer-events: none; }
+  .tag { display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: calc(var(--u) * 1.5); letter-spacing: .12em; text-transform: uppercase; padding: .5em .9em; border-radius: 999px; }
+  .panel { position: absolute; overflow: hidden; border-radius: calc(var(--u) * 1.6); box-shadow: 0 calc(var(--u)*3) calc(var(--u)*6) calc(var(--u)*-3) rgba(0,0,0,.35); }
+  .panel img { width: 100%; height: 100%; object-fit: cover; }
+  .panel span { position: absolute; left: calc(var(--u)*1.4); bottom: calc(var(--u)*1.4); background: rgba(238,229,211,.94); color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <!-- 0 · logo -->
+  <section class="scene" id="s0" style="background:var(--char);color:var(--paper)">
+    <div id="logo" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:100%">
+      <svg id="mark" viewBox="60 75 860 285" style="height:calc(var(--u)*9);width:auto;display:block;margin:0 auto">
+        <defs><clipPath id="sweep"><rect id="sweepRect" x="60" y="60" width="0" height="320"/></clipPath></defs>
+        <path clip-path="url(#sweep)" fill="#eee5d3" d="M65 345 Q380 262 668 196 Q694 165 700 80 Q742 188 915 185 Q762 230 755 355 Q712 262 676 266 Q380 300 65 345 Z"/>
+      </svg>
+      <div id="word" class="wide" style="margin-top:calc(var(--u)*3);font-weight:600;font-size:calc(var(--u)*7.4);letter-spacing:.3em;white-space:nowrap">
+        <span class="ch">C</span><span class="ch">O</span><span class="ch">M</span><span class="ch">E</span><span class="ch">T</span><sup class="ch" style="font-family:'IBM Plex Mono';font-size:.32em;letter-spacing:0;vertical-align:1.6em;margin-left:-.25em">2.0</sup>
+      </div>
+      <div id="sub" class="wide eyebrow" style="margin-top:calc(var(--u)*3);font-size:calc(var(--u)*1.7);letter-spacing:.5em;opacity:0">Mumbai in Motion</div>
+    </div>
+  </section>
+
+  <!-- 1–3 · editions -->
+  <section class="scene" id="s1"><img class="photo" data-src="01" /><div class="scrim" data-tone="light"></div>
+    <div class="caption" data-cap>
+      <span class="line eyebrow" style="font-size:calc(var(--u)*1.4)">Edition 01</span>
+      <span class="line display" style="font-size:calc(var(--u)*7.2);margin-top:calc(var(--u)*1)">Platform Local</span>
+      <span class="line deva" style="font-size:calc(var(--u)*3);color:var(--terra);margin-top:calc(var(--u)*.6)">लोकल</span>
+    </div>
+    <div class="caption" data-top style="text-align:center">
+      <span class="line display" style="font-size:calc(var(--u)*4.4)">A city that never stops.</span>
+    </div>
+  </section>
+  <section class="scene" id="s2"><img class="photo" data-src="03" /><div class="scrim" data-tone="light"></div>
+    <div class="caption" data-cap>
+      <span class="line eyebrow" style="font-size:calc(var(--u)*1.4)">Edition 02</span>
+      <span class="line display" style="font-size:calc(var(--u)*7.2);margin-top:calc(var(--u)*1)">Postcard</span>
+      <span class="line deva" style="font-size:calc(var(--u)*3);color:var(--terra);margin-top:calc(var(--u)*.6)">पोस्टकार्ड</span>
+    </div>
+  </section>
+  <section class="scene" id="s3"><img class="photo" data-src="04" /><div class="scrim" data-tone="dark"></div>
+    <div class="caption" data-cap style="color:var(--paper)">
+      <span class="line eyebrow" style="font-size:calc(var(--u)*1.4);opacity:.8">Edition 03</span>
+      <span class="line display" style="font-size:calc(var(--u)*7.2);margin-top:calc(var(--u)*1)">Harbour</span>
+      <span class="line deva" style="font-size:calc(var(--u)*3);color:#e3a58f;margin-top:calc(var(--u)*.6)">बंदर</span>
+    </div>
+  </section>
+
+  <!-- 4 · details -->
+  <section class="scene" id="s4" style="background:var(--paper)">
+    <div class="caption" data-head>
+      <span class="line eyebrow" style="font-size:calc(var(--u)*1.4);color:#7a7268">The details</span>
+      <span class="line display" style="font-size:calc(var(--u)*6.4);margin-top:calc(var(--u)*1)">Built from the city.</span>
+    </div>
+    <div class="panel" data-panel="0"><img src="assets/local-d-train.jpg" /><span class="tag">The Mumbai local</span></div>
+    <div class="panel" data-panel="1"><img src="assets/local-d-vadapav.jpg" /><span class="tag">वड़ा पाव</span></div>
+    <div class="panel" data-panel="2"><img src="assets/local-d-cst.jpg" /><span class="tag">CST</span></div>
+  </section>
+
+  <!-- 5 · packaging -->
+  <section class="scene" id="s5"><img class="photo" data-src="05" /><div class="scrim" data-tone="dark"></div>
+    <div class="caption" data-cap style="color:var(--paper)">
+      <span class="line eyebrow" style="font-size:calc(var(--u)*1.4);opacity:.8">The packaging</span>
+      <span class="line display" style="font-size:calc(var(--u)*6.4);margin-top:calc(var(--u)*1)">A poster you can open.</span>
+    </div>
+  </section>
+
+  <!-- 6 · end card -->
+  <section class="scene" id="s6" style="background:var(--paper)">
+    <img class="photo" data-src="06" id="endPhoto" />
+    <div id="endVeil" style="position:absolute;inset:0;background:var(--paper)"></div>
+    <div id="end" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:100%">
+      <svg viewBox="60 75 860 285" class="line" style="height:calc(var(--u)*6);width:auto;margin:0 auto;color:var(--ink)"><path fill="currentColor" d="M65 345 Q380 262 668 196 Q694 165 700 80 Q742 188 915 185 Q762 230 755 355 Q712 262 676 266 Q380 300 65 345 Z"/></svg>
+      <span class="line wide" style="margin-top:calc(var(--u)*2.2);font-weight:600;font-size:calc(var(--u)*5.6);letter-spacing:.3em;white-space:nowrap">COMET<sup style="font-family:'IBM Plex Mono';font-size:.34em;letter-spacing:0;vertical-align:1.5em;margin-left:-.25em">2.0</sup></span>
+      <span class="line wide eyebrow" style="margin-top:calc(var(--u)*2);font-size:calc(var(--u)*1.6);letter-spacing:.5em">Mumbai in Motion</span>
+      <span class="line display" style="margin-top:calc(var(--u)*3.4);font-size:calc(var(--u)*4.6);color:var(--navy);text-transform:uppercase">A city that never stops.</span>
+      <span class="line eyebrow" style="margin-top:calc(var(--u)*4);font-size:calc(var(--u)*1.1);color:#7a7268">A design concept · comet-mumbai.vercel.app</span>
+    </div>
+  </section>
+</div>
+
+<script>
+  const q = new URLSearchParams(location.search);
+  const W = +q.get("w") || 1920, H = +q.get("h") || 1080;
+  const V = H > W; // vertical format
+  const U = Math.min(W, H) / 100 * (V ? 1.25 : 1); // type unit
+  const root = document.documentElement.style;
+  root.setProperty("--w", W + "px"); root.setProperty("--h", H + "px"); root.setProperty("--u", U + "px");
+
+  // photos: 16:9 crops for landscape, Adobe Generative Expand verticals for 9:16
+  document.querySelectorAll("img[data-src]").forEach((img) => (img.src = `assets/${V ? "v" : "h"}-${img.dataset.src}.jpg`));
+
+  // layout per format
+  const pad = V ? U * 6 : U * 6;
+  document.querySelectorAll("[data-cap]").forEach((el) => {
+    Object.assign(el.style, V ? { left: pad + "px", right: pad + "px", bottom: U * 13 + "px", textAlign: "center" } : { left: pad + "px", bottom: U * 8 + "px" });
+  });
+  document.querySelectorAll("[data-top]").forEach((el) => Object.assign(el.style, { left: 0, right: 0, top: (V ? U * 15 : U * 7) + "px" }));
+  document.querySelectorAll("[data-head]").forEach((el) => Object.assign(el.style, V ? { left: pad + "px", right: pad + "px", top: U * 14 + "px", textAlign: "center" } : { left: pad + "px", top: U * 8 + "px" }));
+  // legibility scrims: a soft gradient where the caption sits
+  document.querySelectorAll(".scrim").forEach((el) => {
+    const c = el.dataset.tone === "dark" ? "0,0,0" : "238,229,211";
+    const a = el.dataset.tone === "dark" ? 0.55 : 0.8;
+    el.style.background = V
+      ? `linear-gradient(to top, rgba(${c},${a}) 0%, rgba(${c},0) 38%), linear-gradient(to bottom, rgba(${c},${a * 0.8}) 0%, rgba(${c},0) 26%)`
+      : `linear-gradient(to top, rgba(${c},${a}) 0%, rgba(${c},0) 42%), linear-gradient(to right, rgba(${c},${a * 0.6}) 0%, rgba(${c},0) 45%)`;
+  });
+  // detail panels
+  const panels = [...document.querySelectorAll("[data-panel]")];
+  panels.forEach((p, i) => {
+    if (V) {
+      const w = W - pad * 2, h = (H - U * 40) / 3 - U * 1.6;
+      Object.assign(p.style, { left: pad + "px", width: w + "px", height: h + "px", top: U * 30 + i * (h + U * 2.2) + "px" });
+    } else {
+      const w = (W - pad * 2 - U * 4) / 3;
+      Object.assign(p.style, { left: pad + i * (w + U * 2) + "px", width: w + "px", height: H * 0.5 + "px", top: H * 0.36 + "px" });
+    }
+  });
+
+  // ── easing & helpers ──
+  const clamp = (x) => Math.min(1, Math.max(0, x));
+  const prog = (t, a, b) => clamp((t - a) / (b - a));
+  const outExpo = (x) => (x === 1 ? 1 : 1 - Math.pow(2, -10 * x));
+  const outCubic = (x) => 1 - Math.pow(1 - x, 3);
+  const inOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  // scene windows [in, out] in seconds; neighbours overlap for the transitions
+  const S = { s0: [0, 2.6], s1: [2.3, 5.7], s2: [5.4, 8.6], s3: [8.3, 11.5], s4: [11.2, 14.2], s5: [13.9, 16.6], s6: [16.3, 20] };
+  window.DURATION = 20;
+
+  /** text lines rise in with a stagger */
+  function lines(scene, t, start, gap = 0.12) {
+    $$(".line", scene).forEach((el, i) => {
+      const k = outExpo(prog(t, start + i * gap, start + i * gap + 0.9));
+      el.style.opacity = k;
+      el.style.transform = `translateY(${(1 - k) * U * 3}px)`;
+    });
+  }
+
+  window.render = function (t) {
+    // 0 · logo: the comet's tail sweeps in, the wordmark tracks in, then the scene dissolves
+    {
+      const s = $("#s0");
+      s.style.opacity = 1 - inOut(prog(t, 2.3, 2.6));
+      $("#sweepRect").setAttribute("width", 880 * outCubic(prog(t, 0.15, 1.15)));
+      $$(".ch", s).forEach((c, i) => {
+        const k = outExpo(prog(t, 0.75 + i * 0.07, 1.6 + i * 0.07));
+        c.style.opacity = k;
+        c.style.display = "inline-block";
+        c.style.transform = `translateX(${(1 - k) * U * 2.5}px)`;
+      });
+      $("#sub").style.opacity = outCubic(prog(t, 1.35, 2.0));
+      $("#logo").style.transform = `translate(-50%,-50%) scale(${1 + 0.04 * prog(t, 0, 2.6)})`;
+    }
+    // 1–3, 5 · photographs: wipe in from the right, slow push-in, captions rise
+    for (const id of ["s1", "s2", "s3", "s5"]) {
+      const s = $("#" + id);
+      const [a, b] = S[id];
+      const wipe = id === "s1" ? 1 : inOut(prog(t, a, a + 0.75));
+      s.style.opacity = id === "s1" ? inOut(prog(t, a, a + 0.5)) : t >= a ? 1 : 0;
+      s.style.clipPath = `inset(0 0 0 ${(1 - wipe) * 100}%)`;
+      // stay underneath until the next scene has fully wiped over (scenes later in the DOM sit on top)
+      if (t > b + 0.6) s.style.opacity = 0;
+      // verticals start closer: the expanded set leaves the product small in a tall frame
+      const base = V ? 1.42 : 1.1;
+      $(".photo", s).style.transform = `scale(${base - 0.1 * outCubic(prog(t, a, b))})`;
+      lines(s, t, a + 0.55);
+      // the headline on the first shot arrives a beat later
+      const top = $("[data-top]", s);
+      if (top) $$(".line", top).forEach((el) => {
+        const k = outExpo(prog(t, a + 1.2, a + 2.1));
+        el.style.opacity = k;
+        el.style.transform = `translateY(${(1 - k) * U * 2}px)`;
+      });
+    }
+    // 4 · details: panels rise in one after another
+    {
+      const s = $("#s4");
+      const [a, b] = S.s4;
+      s.style.opacity = t >= a && t <= b + 0.6 ? 1 : 0;
+      s.style.clipPath = `inset(0 0 0 ${(1 - inOut(prog(t, a, a + 0.75))) * 100}%)`;
+      lines($("[data-head]", s), t, a + 0.4);
+      panels.forEach((p, i) => {
+        const k = outExpo(prog(t, a + 0.7 + i * 0.22, a + 1.7 + i * 0.22));
+        p.style.opacity = k;
+        p.style.transform = `translateY(${(1 - k) * U * 8}px)`;
+        $("img", p).style.transform = `scale(${1.12 - 0.12 * outCubic(prog(t, a + 0.7, b))})`;
+      });
+    }
+    // 6 · end card: the campaign photo shows through, then settles to paper behind the lockup
+    {
+      const s = $("#s6");
+      const [a] = S.s6;
+      s.style.opacity = t >= a ? 1 : 0;
+      s.style.clipPath = `inset(0 0 0 ${(1 - inOut(prog(t, a, a + 0.75))) * 100}%)`;
+      $("#endPhoto").style.transform = `scale(${1.08 - 0.08 * outCubic(prog(t, a, a + 2))})`;
+      $("#endVeil").style.opacity = inOut(prog(t, a + 1.0, a + 1.8));
+      lines($("#end"), t, a + 1.4, 0.16);
+    }
+  };
+
+  window.ready = (async () => {
+    await document.fonts.ready;
+    await Promise.all([...document.images].map((i) => (i.complete ? i.decode().catch(() => {}) : new Promise((r) => (i.onload = () => i.decode().then(r, r))))));
+    window.render(0);
+    return true;
+  })();
+</script>
+</body>
+</html>

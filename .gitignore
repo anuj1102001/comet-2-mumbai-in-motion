@@ -46,3 +46,5 @@ next-env.d.ts
 /design/photo/in/
 /design/photo/staged/
 /design/photo/final/
+/design/reel/assets/
+/design/reel/*.mp4
