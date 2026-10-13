@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# studio photo intermediates (regenerate with scripts/photo.mjs + the Adobe steps in design/photo/README.md)
+/design/photo/in/
+/design/photo/staged/
+/design/photo/final/
