@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CST_DETAIL, CST_PATH } from "@/components/art/cst";
 import { SneakerSVG } from "@/components/art/SneakerSVG";
 import { Footer, Nav } from "@/components/Nav";
 import { Reveal } from "@/components/ui";
 import { CometLogo } from "@/components/brand/Logo";
+import { OriginButton } from "@/components/OriginButton";
 import { CHAPTERS } from "@/lib/chapters";
 import { COLORWAYS } from "@/lib/colorways";
 
@@ -312,9 +312,11 @@ export default function CaseStudy() {
           <p className="text-[15px] leading-relaxed text-ink-2">
             A cinematic opening on a CSMT platform that pushes in to the shoe, a silhouette sequence, the postcard system, eight explained details, a three-stage packaging story, a campaign frame and a product page that ends in this case study — not a checkout. The opening uses a storyboard animatic until the generated footage is ready, and says so.
           </p>
-          <Link href="/" className="btn btn-ink mt-6">
-            Open the experience <span aria-hidden>→</span>
-          </Link>
+          <div className="mt-6">
+            <OriginButton href="/">
+              Open the experience <span aria-hidden>→</span>
+            </OriginButton>
+          </div>
         </Section>
 
         <Section n="12" title="Outcomes & reflections">
@@ -325,7 +327,7 @@ export default function CaseStudy() {
                 <li>Three sneaker editions on one silhouette</li>
                 <li>Collectible box, tissue, postcard, tag and bag</li>
                 <li>Eight-chapter scroll story, with slots ready for the cinematic shots</li>
-                <li>COMET 2.0 identity: comet mark — the shoe's four-point star trailing a tapered tail and wordmark</li>
+                <li>COMET 2.0 identity: a comet mark (the shoe&apos;s four-point star trailing a tapered tail) and wordmark</li>
                 <li>Bilingual type system and design tokens</li>
                 <li>This case study</li>
               </ul>

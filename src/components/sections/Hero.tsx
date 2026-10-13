@@ -1,13 +1,15 @@
 "use client";
-import { motion, useMotionTemplate, useMotionValueEvent, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
+import { useReduced } from "../motion/useReduced";
+import { motion, useMotionTemplate, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { colorwayById } from "@/lib/colorways";
 import { SHOTS } from "@/lib/media";
 import { scrollToId } from "@/lib/scroll";
+import { OriginButton } from "@/components/OriginButton";
 import { useStore } from "@/lib/store";
 import { Backdrop, Canopy, Commuter, Crowd, Platform, SHOE_POINT, Train } from "../art/CityScene";
 import { CometLogo } from "../brand/Logo";
-import { Magnetic, MediaTag } from "../ui";
+import { MediaTag } from "../ui";
 
 /**
  * Chapters 1–2: the city, then the reveal.
@@ -21,7 +23,7 @@ import { Magnetic, MediaTag } from "../ui";
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReduced();
   const cw = colorwayById(useStore((s) => s.colorway));
   const shot = SHOTS.city;
 
@@ -100,12 +102,12 @@ export function Hero() {
           <p className="wide mt-6 text-sm font-semibold tracking-[0.42em] text-paper/90 sm:text-base">MUMBAI IN MOTION</p>
           <p className="mt-4 max-w-lg text-[17px] leading-relaxed text-paper/80">“A city that never stops. A story that moves with every step.”</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Magnetic href="#silhouette" className="btn bg-paper text-ink hover:bg-saffron" onClick={(e) => (e.preventDefault(), go("silhouette"))}>
+            <OriginButton href="#silhouette" tone="dark" onClick={(e) => (e.preventDefault(), go("silhouette"))}>
               Explore the sneaker <span aria-hidden>→</span>
-            </Magnetic>
-            <Magnetic href="#postcard" className="btn btn-line text-paper hover:!bg-paper hover:!text-ink" onClick={(e) => (e.preventDefault(), go("postcard"))}>
+            </OriginButton>
+            <OriginButton href="#postcard" tone="dark" variant="secondary" onClick={(e) => (e.preventDefault(), go("postcard"))}>
               Discover the story
-            </Magnetic>
+            </OriginButton>
           </div>
         </motion.div>
 
@@ -119,9 +121,11 @@ export function Hero() {
             <MediaTag tone="dark">Storyboard animatic · footage pending</MediaTag>
           </motion.div>
         )}
-        <button onClick={() => go("silhouette")} className="btn absolute bottom-5 right-4 z-10 border border-white/25 bg-char/60 py-2 text-xs text-paper hover:bg-paper hover:text-ink sm:right-8">
-          Skip intro <span aria-hidden>↓</span>
-        </button>
+        <div className="absolute bottom-5 right-4 z-10 sm:right-8">
+          <OriginButton tone="dark" variant="secondary" size="sm" onClick={() => go("silhouette")}>
+            Skip intro <span aria-hidden>↓</span>
+          </OriginButton>
+        </div>
       </div>
     </section>
   );

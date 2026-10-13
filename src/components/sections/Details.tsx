@@ -1,10 +1,12 @@
 "use client";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useReduced } from "../motion/useReduced";
+import { AnimatePresence, motion } from "motion/react";
 import { useRef, useState } from "react";
 import { colorwayById } from "@/lib/colorways";
 import { detailsFor, imageFor } from "@/lib/details";
 import { MOTION } from "@/lib/media";
 import { useStore } from "@/lib/store";
+import { OriginButton } from "@/components/OriginButton";
 import { SneakerSVG, zoneLabel } from "../art/SneakerSVG";
 import { ChapterHead, MediaTag } from "../ui";
 import { usePrefetch } from "../motion/usePrefetch";
@@ -23,7 +25,7 @@ export function Details() {
   const items = detailsFor(cw);
   const { step, goTo } = useStep(ref, items.length);
   usePrefetch(ref, [...items.map((x) => imageFor(x, colorway)), ...cw.views.slice(0, 2).map((v) => v.src)]);
-  const reduce = useReducedMotion();
+  const reduce = useReduced();
   const d = items[Math.min(step, items.length - 1)];
   const [compareFor, setCompareFor] = useState<string | null>(null);
   const compare = compareFor === d.id + colorway;
@@ -75,13 +77,13 @@ export function Details() {
               <div className="absolute left-3 top-3">
                 <MediaTag>{compare ? `Full ${fullSide.label.toLowerCase()} side` : "Close-up"} · concept render</MediaTag>
               </div>
-              <div className="absolute bottom-3 right-3 flex rounded-full bg-paper/90 p-1 text-xs font-semibold" role="group" aria-label="Compare">
-                <button className={`rounded-full px-3 py-1.5 transition-colors ${!compare ? "bg-ink text-paper" : "text-ink"}`} aria-pressed={!compare} onClick={() => setCompareFor(null)}>
+              <div className="absolute bottom-3 right-3 flex gap-1 rounded-full bg-paper/90 p-1" role="group" aria-label="Compare">
+                <OriginButton variant="secondary" size="xs" className="!border-transparent" active={!compare} aria-pressed={!compare} onClick={() => setCompareFor(null)}>
                   Close-up
-                </button>
-                <button className={`rounded-full px-3 py-1.5 transition-colors ${compare ? "bg-ink text-paper" : "text-ink"}`} aria-pressed={compare} onClick={() => setCompareFor(d.id + colorway)}>
+                </OriginButton>
+                <OriginButton variant="secondary" size="xs" className="!border-transparent" active={compare} aria-pressed={compare} onClick={() => setCompareFor(d.id + colorway)}>
                   Full shoe
-                </button>
+                </OriginButton>
               </div>
             </div>
 

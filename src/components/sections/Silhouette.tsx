@@ -1,8 +1,10 @@
 "use client";
-import { motion, useReducedMotion, useTransform, type MotionValue } from "motion/react";
+import { useReduced } from "../motion/useReduced";
+import { motion, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
 import { colorwayById } from "@/lib/colorways";
 import { useStore } from "@/lib/store";
+import { OriginButton } from "@/components/OriginButton";
 import { ChapterHead, ColorwayPicker, MediaTag } from "../ui";
 import { usePrefetch } from "../motion/usePrefetch";
 import { useStep } from "./useStep";
@@ -41,7 +43,7 @@ export function Silhouette() {
   const views = cw.views;
   const { step, goTo, smooth } = useStep(ref, views.length);
   usePrefetch(ref, views.map((v) => v.src));
-  const reduce = useReducedMotion();
+  const reduce = useReduced();
   const v = views[Math.min(step, views.length - 1)];
 
   return (
@@ -96,9 +98,9 @@ export function Silhouette() {
               </p>
               <div className="no-scrollbar mt-3 flex gap-1.5 overflow-x-auto" role="tablist" aria-label="Product views">
                 {views.map((view, i) => (
-                  <button key={view.label} role="tab" aria-selected={i === step} onClick={() => goTo(i)} className="chip shrink-0">
+                  <OriginButton key={view.label} role="tab" aria-selected={i === step} active={i === step} onClick={() => goTo(i)} variant="secondary" size="xs">
                     <span className="font-mono text-[10px] opacity-60">{String(i + 1).padStart(2, "0")}</span> {view.label}
-                  </button>
+                  </OriginButton>
                 ))}
               </div>
             </div>

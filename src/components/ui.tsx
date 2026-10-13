@@ -1,13 +1,14 @@
 "use client";
-import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
-import type { ComponentProps, ReactNode } from "react";
+import { useReduced } from "./motion/useReduced";
+import { motion } from "motion/react";
+import type { ReactNode } from "react";
 import { COLORWAYS, type Colorway } from "@/lib/colorways";
 import { MOTION } from "@/lib/media";
 import { store, useStore } from "@/lib/store";
 
 /** Editorial reveal: fades and lifts content once as it enters the viewport. */
 export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
-  const reduce = useReducedMotion();
+  const reduce = useReduced();
   return (
     <motion.div
       className={className}
@@ -18,34 +19,6 @@ export function Reveal({ children, delay = 0, className }: { children: ReactNode
     >
       {children}
     </motion.div>
-  );
-}
-
-/** Link that leans slightly toward a mouse cursor. */
-export function Magnetic({ children, className, ...rest }: ComponentProps<"a">) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 220, damping: 20 });
-  const sy = useSpring(y, { stiffness: 220, damping: 20 });
-  const reduce = useReducedMotion();
-  return (
-    <motion.a
-      {...(rest as object)}
-      className={className}
-      style={{ x: sx, y: sy }}
-      onPointerMove={(e) => {
-        if (reduce || e.pointerType !== "mouse") return;
-        const r = e.currentTarget.getBoundingClientRect();
-        x.set((e.clientX - r.left - r.width / 2) * 0.18);
-        y.set((e.clientY - r.top - r.height / 2) * 0.25);
-      }}
-      onPointerLeave={() => {
-        x.set(0);
-        y.set(0);
-      }}
-    >
-      {children}
-    </motion.a>
   );
 }
 

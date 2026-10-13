@@ -1,8 +1,10 @@
 "use client";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useReduced } from "../motion/useReduced";
+import { AnimatePresence, motion } from "motion/react";
 import { useRef, useState } from "react";
 import { MOTION } from "@/lib/media";
 import { BOX_DETAILS, type BoxStage } from "@/lib/packaging";
+import { OriginButton } from "@/components/OriginButton";
 import { ChapterHead, MediaTag } from "../ui";
 import { usePrefetch } from "../motion/usePrefetch";
 import { useStep } from "./useStep";
@@ -22,7 +24,7 @@ export function Packaging() {
   const ref = useRef<HTMLElement>(null);
   const { step, goTo } = useStep(ref, STAGES.length);
   usePrefetch(ref, STAGES.map((s) => s.src));
-  const reduce = useReducedMotion();
+  const reduce = useReduced();
   const stage = STAGES[step];
   const spots = Object.values(BOX_DETAILS).filter((d) => d.stage === stage.id);
   const [picked, setPicked] = useState<string | null>(null);
@@ -95,15 +97,9 @@ export function Packaging() {
             </AnimatePresence>
             <div className="mt-4 flex gap-1.5" role="tablist" aria-label="Packaging stages">
               {STAGES.map((s, i) => (
-                <button
-                  key={s.id}
-                  role="tab"
-                  aria-selected={i === step}
-                  onClick={() => goTo(i)}
-                  className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors duration-300 ${i === step ? "border-paper bg-paper text-ink" : "border-white/15 text-paper/75 hover:border-paper/60"}`}
-                >
+                <OriginButton key={s.id} role="tab" aria-selected={i === step} active={i === step} onClick={() => goTo(i)} tone="dark" variant="secondary" size="xs">
                   {s.label}
-                </button>
+                </OriginButton>
               ))}
             </div>
           </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CHAPTERS } from "@/lib/chapters";
 import { CometLogo } from "./brand/Logo";
+import { OriginButton } from "@/components/OriginButton";
 
 
 const PRIMARY = [
@@ -83,12 +84,12 @@ export function Nav({ home = true }: { home?: boolean }) {
             </ul>
           </nav>
           <div className="flex items-center gap-2">
-            <Link href={home ? "/case-study" : "/"} className={`btn btn-line hidden py-2 sm:inline-flex ${overDark ? "text-paper hover:!border-paper hover:!bg-paper hover:!text-ink" : "text-ink"}`}>
+            <OriginButton href={home ? "/case-study" : "/"} size="sm" variant="secondary" tone={overDark ? "dark" : "light"} className="hidden sm:inline-flex">
               {home ? "Case study" : "The experience"}
-            </Link>
-            <button className={`btn py-2 lg:hidden ${overDark ? "bg-paper text-ink" : "btn-ink"}`} aria-expanded={open} aria-controls="menu" onClick={() => setOpen((o) => !o)}>
+            </OriginButton>
+            <OriginButton size="sm" tone={overDark ? "dark" : "light"} className="lg:hidden" aria-expanded={open} aria-controls="menu" onClick={() => setOpen((o) => !o)}>
               {open ? "Close" : "Menu"}
-            </button>
+            </OriginButton>
           </div>
         </div>
         <motion.div style={{ scaleX: progress }} className="h-px origin-left bg-terracotta" />

@@ -1,9 +1,11 @@
 "use client";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
+import { useReduced } from "../motion/useReduced";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
 import { colorwayById } from "@/lib/colorways";
 import { useStore } from "@/lib/store";
 import { CometLogo } from "../brand/Logo";
+import { OriginButton } from "@/components/OriginButton";
 import { ColorwayPicker, MediaTag, Reveal } from "../ui";
 
 /**
@@ -12,7 +14,7 @@ import { ColorwayPicker, MediaTag, Reveal } from "../ui";
  */
 export function Collection() {
   const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReduced();
   const cw = colorwayById(useStore((s) => s.colorway));
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const p = useSpring(scrollYProgress, { stiffness: 120, damping: 28, restDelta: 0.0005 });
@@ -52,9 +54,9 @@ export function Collection() {
         <Reveal className="mt-14">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <p className="h-display text-3xl">Three editions. One silhouette.</p>
-            <a href="#specs" className="btn bg-paper text-ink hover:bg-saffron">
+            <OriginButton href="#specs" tone="dark">
               Product details <span aria-hidden>↓</span>
-            </a>
+            </OriginButton>
           </div>
           <ColorwayPicker size="lg" tone="dark" />
         </Reveal>

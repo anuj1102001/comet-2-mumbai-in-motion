@@ -107,36 +107,7 @@ main > section, footer { background-image: var(--grain); background-size: 160px 
 }
 
 /* ───────────────────────── Components ───────────────────────── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  border-radius: 999px;
-  padding: 0.8rem 1.25rem;
-  font-size: 0.86rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), border-color 0.3s;
-}
-.btn-ink { background: var(--ink); color: var(--paper); }
-.btn-ink:hover { background: var(--indigo); }
-.btn-line { border: 1px solid currentColor; }
-.btn-line:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.78rem;
-  background: rgb(238 229 211 / 0.7);
-  transition: background-color 0.25s, border-color 0.25s, color 0.25s;
-}
-.chip:hover, .chip[aria-pressed="true"], .chip[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-
-/* 3D hotspot — a pulsing stamp mark. */
+/* Hotspot — a pulsing stamp mark on product and packaging renders. */
 .hotspot {
   position: relative;
   width: 30px;

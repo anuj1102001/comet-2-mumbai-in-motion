@@ -7,7 +7,8 @@ import { DETAILS } from "@/lib/details";
 import { MOTION } from "@/lib/media";
 import { store, useStore } from "@/lib/store";
 import { CometLogo } from "../brand/Logo";
-import { Magnetic, MediaTag } from "../ui";
+import { OriginButton } from "@/components/OriginButton";
+import { MediaTag } from "../ui";
 
 const SIZES = [
   { uk: 6, eu: "39", us: "7", cm: "24.5" },
@@ -119,12 +120,12 @@ export function Specs() {
             </fieldset>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Magnetic href="/case-study" className="btn btn-ink">
+              <OriginButton href="/case-study">
                 View the design case study <span aria-hidden>→</span>
-              </Magnetic>
-              <Magnetic href="#city" className="btn btn-line text-ink">
+              </OriginButton>
+              <OriginButton href="#city" variant="secondary">
                 Watch the story again
-              </Magnetic>
+              </OriginButton>
             </div>
 
             <div className="mt-12 grid gap-8 sm:grid-cols-2">
