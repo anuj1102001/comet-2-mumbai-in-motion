@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { fontVars } from "@/lib/fonts";
 import "./globals.css";
 
@@ -23,7 +24,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${fontVars} antialiased`}>
-      <body className="grain min-h-full">{children}</body>
+      <body className="min-h-full">
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }

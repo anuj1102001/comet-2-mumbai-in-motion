@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { MOTION } from "@/lib/media";
 import { BOX_DETAILS, type BoxStage } from "@/lib/packaging";
 import { ChapterHead, MediaTag } from "../ui";
+import { usePrefetch } from "../motion/usePrefetch";
 import { useStep } from "./useStep";
 
 const STAGES: { id: BoxStage; src: string; label: string; line: string }[] = [
@@ -20,6 +21,7 @@ const STAGES: { id: BoxStage; src: string; label: string; line: string }[] = [
 export function Packaging() {
   const ref = useRef<HTMLElement>(null);
   const { step, goTo } = useStep(ref, STAGES.length);
+  usePrefetch(ref, STAGES.map((s) => s.src));
   const reduce = useReducedMotion();
   const stage = STAGES[step];
   const spots = Object.values(BOX_DETAILS).filter((d) => d.stage === stage.id);

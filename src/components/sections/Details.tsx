@@ -7,6 +7,7 @@ import { MOTION } from "@/lib/media";
 import { useStore } from "@/lib/store";
 import { SneakerSVG, zoneLabel } from "../art/SneakerSVG";
 import { ChapterHead, MediaTag } from "../ui";
+import { usePrefetch } from "../motion/usePrefetch";
 import { useStep } from "./useStep";
 
 /**
@@ -21,6 +22,7 @@ export function Details() {
   const cw = colorwayById(colorway);
   const items = detailsFor(cw);
   const { step, goTo } = useStep(ref, items.length);
+  usePrefetch(ref, [...items.map((x) => imageFor(x, colorway)), ...cw.views.slice(0, 2).map((v) => v.src)]);
   const reduce = useReducedMotion();
   const d = items[Math.min(step, items.length - 1)];
   const [compareFor, setCompareFor] = useState<string | null>(null);
@@ -63,7 +65,7 @@ export function Details() {
                   key={d.id + colorway + (compare ? "full" : "close")}
                   src={compare ? fullSide.src : imageFor(d, colorway)}
                   alt={compare ? `${cw.name}, full ${fullSide.label.toLowerCase()} side — concept render` : `${d.title} — close-up concept render`}
-                  className={`absolute inset-0 h-full w-full ${compare ? "object-contain p-4 mix-blend-multiply" : "object-cover"}`}
+                  className={`absolute inset-0 h-full w-full ${compare ? "object-contain p-4" : "object-cover"}`}
                   initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.04 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}

@@ -48,7 +48,7 @@ export function Specs() {
                   key={cw.views[view].src}
                   src={cw.views[view].src}
                   alt={`${cw.name}, ${cw.views[view].label.toLowerCase()} view — concept render`}
-                  className="absolute inset-0 h-full w-full object-contain p-6 mix-blend-multiply"
+                  className="feather-soft absolute inset-0 h-full w-full object-contain p-6"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -69,7 +69,7 @@ export function Specs() {
                   className={`h-16 w-20 shrink-0 overflow-hidden rounded-xl border-2 bg-paper-2 transition-colors ${view === i ? "border-ink" : "border-transparent hover:border-line"}`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={v.src} alt="" loading="lazy" className="h-full w-full object-cover mix-blend-multiply" />
+                  <img src={v.src} alt="" loading="lazy" className="h-full w-full object-cover" />
                 </button>
               ))}
             </div>

@@ -12,7 +12,8 @@ npm run build
 
 ## How it's put together
 - **Source of truth:** the three approved boards in `design/source/`. `node scripts/crop.mjs` cuts them into the views and details in `public/img/`.
-- **Brand:** `src/components/brand/Logo.tsx`, a star-and-orbit mark plus the COMET 2.0 wordmark, all vector and HTML.
+- **Brand:** `src/components/brand/Logo.tsx`, a comet mark — the shoe's four-point star trailing a tapered tail plus the COMET 2.0 wordmark, all vector and HTML.
+- **Smoothness:** Lenis smooths wheel input on fine pointers only (touch, keyboard and reduced motion stay native); scroll-linked visuals read a sprung progress value; no blend modes or fixed overlays. `node scripts/smoothness.mjs <url>` wheel-scrolls the page and reports frame pacing.
 - **Chapters:** `src/components/sections/*`. The page scrolls natively. Long chapters split their scroll range into steps (`useStep.ts`), and only transform and opacity animate.
 - **Cinematic footage:** slots in `src/lib/media.ts`. Until a shot is delivered, the opening plays a labelled storyboard animatic. The shot list is in `design/higgsfield-shot-list.md`.
 - **No real-time 3D:** v1's parametric WebGL shoe was replaced with the approved renders, labelled as renders. See the case study at `/case-study`.

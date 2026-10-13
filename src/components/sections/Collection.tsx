@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
 import { colorwayById } from "@/lib/colorways";
 import { useStore } from "@/lib/store";
@@ -14,7 +14,8 @@ export function Collection() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const cw = colorwayById(useStore((s) => s.colorway));
-  const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const p = useSpring(scrollYProgress, { stiffness: 120, damping: 28, restDelta: 0.0005 });
   const boxY = useTransform(p, [0, 1], reduce ? [0, 0] : [60, -60]);
   const shoeY = useTransform(p, [0, 1], reduce ? [0, 0] : [120, -120]);
 
@@ -39,7 +40,7 @@ export function Collection() {
               </motion.figure>
               <motion.figure style={{ y: shoeY }} className="absolute bottom-[6%] left-0 w-[86%]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={cw.hero} alt={`${cw.name} edition — concept render`} loading="lazy" className="feather w-full mix-blend-multiply" />
+                <img src={cw.hero} alt={`${cw.name} edition — concept render`} loading="lazy" className="feather w-full" />
               </motion.figure>
               <div className="absolute bottom-4 right-4">
                 <MediaTag>Concept renders</MediaTag>

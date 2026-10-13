@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ChapterHead, MediaTag, Reveal } from "../ui";
 
@@ -17,7 +17,8 @@ const RULES = [
 export function Postcard() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const p = useSpring(scrollYProgress, { stiffness: 120, damping: 28, restDelta: 0.0005 });
   const back = useTransform(p, [0, 1], reduce ? [0, 0] : [40, -40]);
   const mid = useTransform(p, [0, 1], reduce ? [0, 0] : [90, -90]);
   const front = useTransform(p, [0, 1], reduce ? [0, 0] : [150, -150]);

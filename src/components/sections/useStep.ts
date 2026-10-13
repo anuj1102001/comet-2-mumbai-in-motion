@@ -1,5 +1,6 @@
 "use client";
-import { useMotionValueEvent, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll, useSpring } from "motion/react";
+import { scrollToY } from "@/lib/scroll";
 import { useCallback, useState, type RefObject } from "react";
 
 /**
@@ -20,10 +21,11 @@ export function useStep(ref: RefObject<HTMLElement | null>, count: number) {
       if (!el) return;
       const top = el.getBoundingClientRect().top + window.scrollY;
       const range = el.offsetHeight - window.innerHeight;
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      window.scrollTo({ top: top + range * ((i + 0.5) / count), behavior: reduce ? "auto" : "smooth" });
+      scrollToY(top + range * ((i + 0.5) / count));
     },
     [ref, count],
   );
-  return { step, goTo, progress: scrollYProgress };
+  // a lightly sprung copy for scroll-linked visuals: absorbs coarse wheel steps
+  const smooth = useSpring(scrollYProgress, { stiffness: 170, damping: 32, restDelta: 0.0005 });
+  return { step, goTo, progress: scrollYProgress, smooth };
 }

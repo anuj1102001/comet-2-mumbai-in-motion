@@ -6,7 +6,7 @@ const page = await browser.newPage();
 await page.setViewport({ width: +w, height: +h, deviceScaleFactor: 1, isMobile: +w < 700, hasTouch: +w < 700 });
 page.on("pageerror", (e) => console.log("pageerror", e.message));
 page.on("console", (m) => m.type() === "error" && console.log("console", m.text().slice(0, 160)));
-await page.goto("http://localhost:3300" + path, { waitUntil: "networkidle2", timeout: 120000 });
+await page.goto((process.env.BASE ?? "http://localhost:3300") + path, { waitUntil: "networkidle2", timeout: 120000 });
 await new Promise((r) => setTimeout(r, 1500));
 for (const item of list.split(",")) {
   if (item.startsWith("#")) {

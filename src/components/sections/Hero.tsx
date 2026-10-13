@@ -1,8 +1,9 @@
 "use client";
-import { motion, useMotionTemplate, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useMotionTemplate, useMotionValueEvent, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { colorwayById } from "@/lib/colorways";
 import { SHOTS } from "@/lib/media";
+import { scrollToId } from "@/lib/scroll";
 import { useStore } from "@/lib/store";
 import { Backdrop, Canopy, Commuter, Crowd, Platform, SHOE_POINT, Train } from "../art/CityScene";
 import { CometLogo } from "../brand/Logo";
@@ -24,7 +25,12 @@ export function Hero() {
   const cw = colorwayById(useStore((s) => s.colorway));
   const shot = SHOTS.city;
 
-  const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  // sprung progress: the camera push glides instead of tracking each wheel notch
+  const p = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.0005 });
+  // freeze the animatic while the camera pushes in: a scaled layer that also repaints every frame is what makes zooms stutter
+  const [frozen, setFrozen] = useState(false);
+  useMotionValueEvent(scrollYProgress, "change", (v) => setFrozen((f) => (f === v > 0.04 ? f : v > 0.04)));
 
   // where the commuter's shoe lands on screen (the SVG uses "slice" scaling)
   const [origin, setOrigin] = useState({ x: 0.52, y: 0.93 });
@@ -54,7 +60,7 @@ export function Hero() {
   const revealCopy = useTransform(p, [0.7, 0.82], [0, 1]);
   const spot = useMotionTemplate`radial-gradient(circle at ${origin.x * 100}% ${origin.y * 100}%, transparent 8%, rgba(25,24,22,.55) 34%, rgba(25,24,22,.92) 70%)`;
 
-  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  const go = scrollToId;
 
   return (
     <section ref={ref} id="city" aria-label="The city and the reveal" className={reduce ? "relative" : "relative h-[240svh]"}>
@@ -68,7 +74,7 @@ export function Hero() {
           {shot.ready ? (
             <video className="h-full w-full object-cover" src={shot.video} poster={shot.poster} autoPlay muted loop playsInline preload="metadata" />
           ) : (
-            <Animatic colors={cw.colors} still={!!reduce} />
+            <Animatic colors={cw.colors} still={!!reduce} frozen={frozen} />
           )}
         </motion.div>
         {!reduce && <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ opacity: vignette, backgroundImage: spot }} />}
@@ -77,7 +83,7 @@ export function Hero() {
         <motion.div aria-hidden={false} className="absolute inset-0 grid place-items-center bg-paper" style={reduce ? { opacity: 0 } : { opacity: product }}>
           <motion.figure style={reduce ? undefined : { scale: productScale }} className="w-[min(88vw,1100px)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={cw.hero} alt={`COMET 2.0 ${cw.name} sneaker, lateral side — concept render`} className="feather w-full mix-blend-multiply" />
+            <img src={cw.hero} alt={`COMET 2.0 ${cw.name} sneaker, lateral side — concept render`} className="feather w-full" />
           </motion.figure>
           <motion.div style={{ opacity: revealCopy }} className="absolute inset-x-0 bottom-[9svh] px-5 text-center">
             <p className="eyebrow text-ink-3">02 · The reveal</p>
@@ -126,9 +132,9 @@ export function Hero() {
  * language. The train glides in once and settles; the crowd breathes. CSS
  * animations only, no filters.
  */
-function Animatic({ colors, still }: { colors: Parameters<typeof Commuter>[0]["colors"]; still: boolean }) {
+function Animatic({ colors, still, frozen }: { colors: Parameters<typeof Commuter>[0]["colors"]; still: boolean; frozen: boolean }) {
   return (
-    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden>
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className={`h-full w-full ${frozen ? "anim-paused" : ""}`} aria-hidden>
       <Backdrop />
       <g className={still ? undefined : "anim-drift"}>
         <Canopy />

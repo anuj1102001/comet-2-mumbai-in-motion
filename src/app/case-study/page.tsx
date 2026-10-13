@@ -325,7 +325,7 @@ export default function CaseStudy() {
                 <li>Three sneaker editions on one silhouette</li>
                 <li>Collectible box, tissue, postcard, tag and bag</li>
                 <li>Eight-chapter scroll story, with slots ready for the cinematic shots</li>
-                <li>COMET 2.0 identity: star-and-orbit mark and wordmark</li>
+                <li>COMET 2.0 identity: comet mark — the shoe's four-point star trailing a tapered tail and wordmark</li>
                 <li>Bilingual type system and design tokens</li>
                 <li>This case study</li>
               </ul>
