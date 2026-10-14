@@ -18,7 +18,7 @@ import { MediaTag } from "../ui";
  * scroll. Scrolling 1.6 screens pushes the camera toward the commuter's shoe
  * and cross-fades to the product on paper. Only transform and opacity animate.
  * When the Higgsfield footage lands (lib/media.ts), the video replaces the
- * storyboard animatic in the same slot.
+ * illustrated opening in the same slot.
  */
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -127,11 +127,6 @@ export function Hero() {
           <p className="h-display mt-3 text-[clamp(2rem,4vw,3.4rem)]">One detail moves differently.</p>
         </motion.div>
 
-        {!shot.ready && (
-          <motion.div style={reduce ? undefined : { opacity: intro }} className="absolute right-4 top-20 sm:right-8">
-            <MediaTag tone="dark">Storyboard animatic · footage pending</MediaTag>
-          </motion.div>
-        )}
         <div className="absolute bottom-5 right-4 z-10 sm:right-8">
           <OriginButton tone="dark" variant="secondary" size="sm" onClick={() => go("silhouette")}>
             Skip intro <span aria-hidden>↓</span>

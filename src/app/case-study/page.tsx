@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui";
 import { CometLogo } from "@/components/brand/Logo";
 import { OriginButton } from "@/components/OriginButton";
 import { ReelPlayer } from "@/components/ReelPlayer";
+import { DesignerCredit } from "@/components/DesignerCredit";
 import { CHAPTERS } from "@/lib/chapters";
 import { COLORWAYS } from "@/lib/colorways";
 
@@ -65,6 +66,7 @@ export default function CaseStudy() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-2">
             An original sneaker, its packaging and a cinematic product story, built from Mumbai&apos;s local trains, the CST terminus, vintage postcards and street lettering. This page explains the thinking behind it.
           </p>
+          <DesignerCredit variant="case" />
           <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line text-sm sm:grid-cols-4">
             {[
               ["Type", "Concept · portfolio"],
@@ -81,6 +83,49 @@ export default function CaseStudy() {
           <p className="mt-4 rounded-xl border border-red/30 bg-red/5 px-4 py-3 text-sm text-ink-2">
             <b className="text-red">Concept, not product.</b> COMET 2.0 is a fictional label. No pair has been manufactured, tested or sold, and no user research or usability testing was carried out for this concept.
           </p>
+          <section aria-labelledby="glance" className="mt-10 rounded-2xl bg-ink p-6 text-paper sm:p-8">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h2 id="glance" className="eyebrow text-paper/60">At a glance · 30-second read</h2>
+              <span className="font-mono text-xs text-paper/40">Concept · 2026</span>
+            </div>
+            <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_1.4fr_1fr]">
+              <div>
+                <p className="eyebrow text-[10px] text-saffron">The challenge</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-paper/85">
+                  Turn a city into a sneaker without making a souvenir: culture on a curved, flexing canvas, in two scripts, with a website that tells the story without trapping the visitor.
+                </p>
+              </div>
+              <div>
+                <p className="eyebrow text-[10px] text-saffron">Three decisions that shaped it</p>
+                <ol className="mt-2 space-y-3 text-[15px] leading-relaxed text-paper/85">
+                  <li>
+                    <b className="text-paper">One scene per panel.</b> Each quarter is composed like a picture postcard, never a collage of landmarks, so the shoe stays wearable.
+                  </li>
+                  <li>
+                    <b className="text-paper">Devanagari leads, Latin labels.</b> Red hand-painted Hindi is the voice, navy capitals the label, and every word is proofread.
+                  </li>
+                  <li>
+                    <b className="text-paper">Honest presentation over flashy 3D.</b> The first build&apos;s real-time 3D shoe looked worse than the boards, so v2 replaced it with the approved renders and studio composites, clearly labelled.
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <p className="eyebrow text-[10px] text-saffron">What it became</p>
+                <ul className="mt-2 space-y-1.5 text-[15px] leading-relaxed text-paper/85">
+                  <li>3 editions, 1 silhouette</li>
+                  <li>Collectible poster box and inserts</li>
+                  <li>COMET 2.0 identity</li>
+                  <li>8-chapter scroll story, live</li>
+                  <li>Studio photo set and 20 s launch reel</li>
+                </ul>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <OriginButton href="/" tone="dark" size="sm">
+                    Open the experience <span aria-hidden>→</span>
+                  </OriginButton>
+                </div>
+              </div>
+            </div>
+          </section>
           <figure className="mt-10">
             <ReelPlayer tone="dark" allowTall={false} />
             <figcaption className="mt-3 text-xs text-ink-3">The launch reel: 20 seconds, cut in 16:9 and 9:16 from the studio photographs, rendered frame by frame from an HTML timeline.</figcaption>
@@ -307,7 +352,7 @@ export default function CaseStudy() {
                 <b className="block text-ink">Accessible by default</b>Skip-intro control, keyboard-reachable hotspots with labels, Esc to close details, a list alternative to every hotspot, and a static opening when reduced motion is requested.
               </li>
               <li className="rounded-2xl border border-line p-5">
-                <b className="block text-ink">Light where it counts</b>No WebGL, no animated filters, no scroll-jacking library. Only transform and opacity animate; images below the fold lazy-load; the opening animatic uses CSS keyframes and pauses under reduced motion.
+                <b className="block text-ink">Light where it counts</b>No WebGL, no animated filters, no scroll-jacking library. Only transform and opacity animate; images below the fold lazy-load; the illustrated opening uses CSS keyframes and pauses under reduced motion.
               </li>
             </ul>
           </div>
@@ -315,7 +360,7 @@ export default function CaseStudy() {
 
         <Section n="11" title="Final experience">
           <p className="text-[15px] leading-relaxed text-ink-2">
-            A cinematic opening on a CSMT platform that pushes in to the shoe, a silhouette sequence, the postcard system, eight explained details, a three-stage packaging story, a campaign frame and a product page that ends in this case study — not a checkout. The opening uses a storyboard animatic until the generated footage is ready, and says so.
+            A cinematic opening on a CSMT platform that pushes in to the shoe, a silhouette sequence, the postcard system, eight explained details, a three-stage packaging story, a campaign frame and a product page that ends in this case study — not a checkout. The opening is illustrated rather than filmed: the platform is drawn in the same navy-etching language as the shoe&apos;s artwork, so the city and the product read as one world.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {[

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CHAPTERS } from "@/lib/chapters";
 import { CometLogo } from "./brand/Logo";
+import { DesignerCredit } from "./DesignerCredit";
 import { OriginButton } from "@/components/OriginButton";
 
 
@@ -155,6 +156,7 @@ export function Footer() {
           <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-2">
             COMET 2.0 is a fictional sneaker label, and Mumbai in Motion is an original product and digital-experience concept made as a portfolio case study. Nothing here is for sale, and no product has been manufactured.
           </p>
+          <DesignerCredit />
         </div>
         <div className="text-sm">
           <p className="eyebrow text-[10px] text-ink-3">Chapters</p>
