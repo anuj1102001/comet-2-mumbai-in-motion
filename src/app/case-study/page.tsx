@@ -71,8 +71,8 @@ export default function CaseStudy() {
             {[
               ["Type", "Concept · portfolio"],
               ["Scope", "Product, packaging, digital experience"],
-              ["Role", "Concept, art direction, product & interaction design"],
-              ["Build", "Next.js, Motion — prototyped with Claude Code"],
+              ["Role", "Concept & creative direction, AI-assisted"],
+              ["Tools", "AI image model, Claude, Adobe Photoshop & Lightroom, Next.js"],
             ].map(([k, v]) => (
               <div key={k} className="bg-paper p-4">
                 <dt className="eyebrow text-[10px] text-ink-3">{k}</dt>
@@ -131,6 +131,42 @@ export default function CaseStudy() {
             <figcaption className="mt-3 text-xs text-ink-3">The launch reel: 20 seconds, cut in 16:9 and 9:16 from the studio photographs, rendered frame by frame from an HTML timeline.</figcaption>
           </figure>
         </header>
+
+        <section aria-labelledby="my-role" className="grid gap-6 border-t border-line py-14 lg:grid-cols-[16rem_1fr] lg:gap-12 lg:py-20">
+          <div>
+            <p className="font-mono text-xs text-red">00</p>
+            <h2 id="my-role" className="h-display mt-3 text-3xl text-ink sm:text-4xl">
+              My role
+            </h2>
+          </div>
+          <div>
+            <p className="text-[17px] leading-relaxed text-ink">
+              I&apos;m the concept owner and creative director. The ideas are mine; the images and the code were produced with AI tools working from my direction.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-ink p-5">
+                <p className="eyebrow text-[10px] text-terracotta">What I did</p>
+                <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-ink">
+                  <li>The concept: a sneaker built from Mumbai&apos;s movement, its trains, CST, postcards, street lettering and food.</li>
+                  <li>The sneaker design ideas and the three editions.</li>
+                  <li>The packaging concept: poster box, tissue, postcard, tag and dust bag.</li>
+                  <li>The brand direction: the COMET 2.0 name and the comet mark.</li>
+                  <li>Directing the AI model with my ideas, and choosing the results.</li>
+                </ul>
+              </div>
+              <div className="rounded-2xl border border-line bg-paper-2 p-5">
+                <p className="eyebrow text-[10px] text-ink-3">What AI tools did</p>
+                <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-ink-2">
+                  <li>An AI image model rendered the sneaker and packaging boards from my ideas.</li>
+                  <li>Claude (Anthropic) built this website and produced the studio composites and launch reel, using Adobe Photoshop and Lightroom.</li>
+                </ul>
+              </div>
+            </div>
+            <p className="mt-6 text-sm leading-relaxed text-ink-2">
+              The renders are AI output, so they carry AI flaws, such as the misspelled मुबई on one sign. These are listed in section 06 rather than hidden.
+            </p>
+          </div>
+        </section>
 
         <Section n="01" title="Overview">
           <p className="text-[17px] leading-relaxed text-ink">
