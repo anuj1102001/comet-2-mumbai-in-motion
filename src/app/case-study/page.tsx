@@ -5,6 +5,7 @@ import { Footer, Nav } from "@/components/Nav";
 import { Reveal } from "@/components/ui";
 import { CometLogo } from "@/components/brand/Logo";
 import { OriginButton } from "@/components/OriginButton";
+import { ReelPlayer } from "@/components/ReelPlayer";
 import { CHAPTERS } from "@/lib/chapters";
 import { COLORWAYS } from "@/lib/colorways";
 
@@ -80,6 +81,10 @@ export default function CaseStudy() {
           <p className="mt-4 rounded-xl border border-red/30 bg-red/5 px-4 py-3 text-sm text-ink-2">
             <b className="text-red">Concept, not product.</b> COMET 2.0 is a fictional label. No pair has been manufactured, tested or sold, and no user research or usability testing was carried out for this concept.
           </p>
+          <figure className="mt-10">
+            <ReelPlayer tone="dark" allowTall={false} />
+            <figcaption className="mt-3 text-xs text-ink-3">The launch reel: 20 seconds, cut in 16:9 and 9:16 from the studio photographs, rendered frame by frame from an HTML timeline.</figcaption>
+          </figure>
         </header>
 
         <Section n="01" title="Overview">
@@ -311,6 +316,25 @@ export default function CaseStudy() {
         <Section n="11" title="Final experience">
           <p className="text-[15px] leading-relaxed text-ink-2">
             A cinematic opening on a CSMT platform that pushes in to the shoe, a silhouette sequence, the postcard system, eight explained details, a three-stage packaging story, a campaign frame and a product page that ends in this case study — not a checkout. The opening uses a storyboard animatic until the generated footage is ready, and says so.
+          </p>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {[
+              ["01-local-lateral-hero", "Platform Local"],
+              ["03-postcard-lateral", "Postcard"],
+              ["04-harbour-closeup", "Harbour"],
+              ["02-local-medial", "Platform Local · medial"],
+              ["05-box-terracotta", "Poster box"],
+              ["06-campaign-box-and-shoe", "Campaign frame"],
+            ].map(([f, cap]) => (
+              <figure key={f}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/img/photo/${f}.webp`} alt={`${cap}, studio photograph`} loading="lazy" className="aspect-[3/2] w-full rounded-xl object-cover" />
+                <figcaption className="mt-1.5 text-xs text-ink-3">{cap}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="mt-4 text-sm leading-relaxed text-ink-2">
+            <b className="text-ink">Studio photography.</b> Each product was cut from its board with Adobe Photoshop, staged on a paper sweep with shadows traced from its own outline, then graded in Lightroom and finished with grain. The product pixels are never redrawn. These are composites of concept renders, not photographs of a manufactured shoe.
           </p>
           <div className="mt-6">
             <OriginButton href="/">

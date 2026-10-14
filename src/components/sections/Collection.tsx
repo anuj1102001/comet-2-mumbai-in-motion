@@ -4,11 +4,13 @@ import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
 import { CometLogo } from "../brand/Logo";
 import { OriginButton } from "@/components/OriginButton";
+import { ReelPlayer } from "@/components/ReelPlayer";
 import { ColorwayPicker, MediaTag, Reveal } from "../ui";
 
 /**
  * Chapter 7: the campaign frame — the studio photograph of shoe and box with
- * the COMET 2.0 lockup set in HTML beside it — then the three editions.
+ * the COMET 2.0 lockup set in HTML beside it — the launch film, then the
+ * three editions.
  */
 export function Collection() {
   const ref = useRef<HTMLElement>(null);
@@ -51,7 +53,18 @@ export function Collection() {
           </div>
         </div>
 
-        <Reveal className="mt-14">
+        <Reveal className="mt-16">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="eyebrow text-paper/60">The launch film · 20 s</p>
+              <p className="h-display mt-2 text-3xl">The collection, in motion.</p>
+            </div>
+            <p className="max-w-sm text-sm leading-relaxed text-paper/60">Built from the studio photographs. Silent, and it pauses when you scroll away.</p>
+          </div>
+          <ReelPlayer tone="dark" />
+        </Reveal>
+
+        <Reveal className="mt-16">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <p className="h-display text-3xl">Three editions. One silhouette.</p>
             <OriginButton href="#specs" tone="dark">
