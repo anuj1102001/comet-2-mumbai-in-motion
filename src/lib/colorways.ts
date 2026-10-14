@@ -95,7 +95,7 @@ export const COLORWAYS: Colorway[] = [
   {
     id: "harbour",
     name: "Harbour",
-    hindi: "बंदर",
+    hindi: "हार्बर",
     board: "/img/board-3.webp",
     tagline: "The all-over edition: one harbour panorama, navy laces, navy cupsole.",
     story:

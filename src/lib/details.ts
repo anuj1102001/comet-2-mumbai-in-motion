@@ -111,7 +111,7 @@ export const DETAILS: Record<string, Detail> = {
   harbour: {
     id: "harbour",
     title: "Harbour Panorama",
-    hindi: "बंदर",
+    hindi: "हार्बर",
     location: "All-over, both quarters",
     zone: "lateral-rear",
     inspiration:
