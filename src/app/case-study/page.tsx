@@ -13,7 +13,7 @@ import { COLORWAYS } from "@/lib/colorways";
 export const metadata: Metadata = {
   title: "Case study — COMET 2.0: Mumbai in Motion",
   description:
-    "How an unsolicited sneaker collection, its packaging, a three-world campaign and a cinematic launch site were designed from Mumbai's railway and street culture — the brief, research, decisions, iterations and trade-offs.",
+    "How an original sneaker collection, its packaging, a three-world campaign and a cinematic launch site were designed from Mumbai's railway and street culture — the brief, research, decisions, iterations and trade-offs.",
 };
 
 /** Evidence labels: every claim on this page is one of these. */
@@ -88,8 +88,8 @@ const RESEARCH = [
 ];
 
 const COMPETITORS = [
-  ["COMET", "Limited drops every one to two months, built on nostalgia and Indian everyday culture (releases such as Mango, Pataka and Jugnu).", "The brief's home: a storytelling brand whose next step could be a city told in depth."],
-  ["Gully Labs", "Culturally Indian sneakers with regional series — the Kerala-inspired Naadu uses boat motifs and Malayalam script — plus handcraft details and collaborations.", "Proves regional scripts and motifs sell; the gap is a story carried past the shoe."],
+  ["Culture-led Indian labels", "Homegrown brands such as Comet and Gully Labs build on nostalgia, regional scripts and motifs, sold through limited drops — the Kerala-inspired Naadu, for example, uses boat motifs and Malayalam script.", "Proves the audience exists; the gap is one city told in depth and carried past the shoe."],
+
   ["Global city editions", "Sneakers named after cities, where the city is often a name and a colourway rather than a narrative.", "Shows the format; leaves the story to the buyer."],
   ["Souvenir merchandise", "Landmark collages on tees and totes: every icon at once.", "The trap to avoid — the reason for 'one scene per panel'."],
 ];
@@ -130,7 +130,7 @@ const ITERATIONS = [
 const ROLES = [
   ["Product / UX designer", "Information architecture of a ten-chapter story; navigation that scrolls, updates the URL and respects the sticky header; interactive product viewer and frame viewer; accessibility defaults.", "No usability testing has been run yet."],
   ["UI designer", "Responsive editorial layouts from phone to desktop, a type system spanning Latin and Devanagari, design tokens shared by site and assets.", "—"],
-  ["Visual / brand designer", "Collection lockup, palette, bilingual type system, poster box, inserts and the graphic placement system on the shoe.", "Built around COMET's existing mark; the mark itself is the brand's."],
+  ["Visual / brand designer", "Collection lockup, palette, bilingual type system, poster box, inserts and the graphic placement system on the shoe.", "—"],
   ["Art director", "Three campaign worlds, frame selection and sequencing, crop and grade decisions, the red-set brand frame.", "Frames are concept imagery, not a photo shoot."],
   ["Marketing designer / strategist", "Competitive positioning, audience hypotheses, a tease–reveal–drop rollout and channel-specific assets.", "No campaign has run; nothing is measured."],
   ["Creative technologist", "Specified and directed a coded scroll experience, the motion system and the asset pipelines (frames, film, ads).", "Built with an AI coding assistant to my direction."],
@@ -143,7 +143,7 @@ export default function CaseStudy() {
       <Nav home={false} />
       <main className="mx-auto max-w-[1200px] px-4 pb-10 pt-28 sm:px-8">
         <header className="pb-14">
-          <p className="eyebrow text-ink-3">Case study · unsolicited concept</p>
+          <p className="eyebrow text-ink-3">Case study · original concept</p>
           <h1 className="h-display mt-5 text-[clamp(3rem,8vw,7rem)] text-ink">
             <CometLogo size="xl" className="text-ink" />
             <span className="mt-4 block italic text-indigo">Mumbai in Motion</span>
@@ -154,7 +154,7 @@ export default function CaseStudy() {
           <DesignerCredit variant="case" />
           <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line text-sm sm:grid-cols-4">
             {[
-              ["Type", "Unsolicited concept · portfolio"],
+              ["Type", "Original concept · portfolio"],
               ["Role", "Concept, product & creative direction"],
               ["Scope", "Product · packaging · campaign · web"],
               ["Year", "2026"],
@@ -166,7 +166,7 @@ export default function CaseStudy() {
             ))}
           </dl>
           <p className="mt-4 rounded-xl border border-red/30 bg-red/5 px-4 py-3 text-sm leading-relaxed text-ink-2">
-            <b className="text-red">Independent concept.</b> Made for COMET, the Indian sneaker brand, without a brief from them: not affiliated with, commissioned or endorsed by COMET, whose name and mark belong to their owner. No pair has been manufactured, tested or sold, and no user research or usability testing was carried out.
+            <b className="text-red">Concept, not product.</b> COMET 2.0 is a fictional label created for this case study and is not affiliated with any existing company or brand of a similar name. No pair has been manufactured, tested or sold, and no user research or usability testing was carried out.
           </p>
 
           <section aria-labelledby="glance" className="mt-10 rounded-2xl bg-ink p-6 text-paper sm:p-8">
@@ -257,7 +257,7 @@ export default function CaseStudy() {
 
         <Section id="brief" n="01" title="Overview & creative brief" kinds={["proposal"]}>
           <p className="text-[17px] leading-relaxed text-ink">
-            Mumbai is movement — a train every few minutes, footboard commuters, a snack eaten standing up. The self-set brief: design a city collection for an Indian sneaker brand that turns that energy into a shoe people would actually wear, a box worth keeping, a campaign that feels observed rather than staged, and a site that tells the story as one journey from a crowded platform to the smallest stitch.
+            Mumbai is movement — a train every few minutes, footboard commuters, a snack eaten standing up. The self-set brief: design a city collection for an Indian sneaker label that turns that energy into a shoe people would actually wear, a box worth keeping, a campaign that feels observed rather than staged, and a site that tells the story as one journey from a crowded platform to the smallest stitch.
           </p>
           <dl className="mt-8 grid gap-4 sm:grid-cols-3">
             {[
@@ -449,7 +449,7 @@ export default function CaseStudy() {
                 <CometLogo size="lg" />
                 <p className="wide mt-4 text-xs font-semibold tracking-[0.42em]">MUMBAI IN MOTION</p>
               </div>
-              <p className="mt-4 text-xs leading-relaxed text-ink-3">Built around COMET&apos;s existing comet mark; the collection adds the &ldquo;2.0&rdquo; and the wide-tracked collection line.</p>
+              <p className="mt-4 text-xs leading-relaxed text-ink-3">The comet mark — the shoe&apos;s four-point star trailing a tapered tail — with the &ldquo;2.0&rdquo; and a wide-tracked collection line.</p>
               <p className="eyebrow mt-6 text-[10px] text-ink-3">Palette</p>
               <ul className="mt-3 grid grid-cols-3 gap-3 text-xs">
                 {[

@@ -82,7 +82,7 @@ export function Specs() {
 
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-terracotta/40 px-3 py-1 text-[11px] font-semibold text-terracotta">
-              <i className="block h-1.5 w-1.5 rounded-full bg-terracotta" /> Unsolicited concept · not for sale
+              <i className="block h-1.5 w-1.5 rounded-full bg-terracotta" /> Design concept · not for sale
             </span>
             <div className="mt-6">
               <CometLogo size="lg" className="text-ink" />

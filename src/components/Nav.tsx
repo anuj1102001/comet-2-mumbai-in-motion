@@ -176,7 +176,7 @@ export function Footer() {
           <CometLogo size="lg" className="text-ink" />
           <p className="wide mt-4 text-xs font-semibold tracking-[0.42em] text-ink-2">MUMBAI IN MOTION</p>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-2">
-            Mumbai in Motion is an unsolicited concept collection for COMET, the Indian sneaker brand, made as an independent portfolio case study. It is not affiliated with, commissioned or endorsed by COMET; the name and comet mark belong to their owner. Nothing here is for sale, and no pair has been manufactured.
+            COMET 2.0 is a fictional sneaker label, and Mumbai in Motion is an original concept collection made as a portfolio case study. It is not affiliated with any existing company or brand of a similar name. Nothing here is for sale, and no pair has been manufactured.
           </p>
           <DesignerCredit />
         </div>
