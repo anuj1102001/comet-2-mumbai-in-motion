@@ -16,11 +16,11 @@ import { MediaTag } from "../ui";
  * Opens on the campaign photograph at the CSMT platform (a landscape crop on
  * wide screens, the original portrait on phones). Scrolling 1.6 screens pushes
  * the camera toward the commuter's shoe and cross-fades to the product on
- * paper. Only transform and opacity animate. When generated footage lands
+ * paper. Only transform and opacity animate. When campaign footage lands
  * (lib/media.ts), the video replaces the photograph in the same slot.
  */
 const OPENING = {
-  // generative-expanded to landscape in Photoshop; shoe = the near (left) sneaker, as a fraction of the image
+  // extended to landscape in Photoshop; shoe = the near (left) sneaker, as a fraction of the image
   wide: { src: "/img/look/platform-wide.webp", srcSet: "/img/look/platform-wide-1400.webp 1400w, /img/look/platform-wide.webp 2400w", w: 3293, h: 2000, shoe: { x: 0.453, y: 0.792 } },
   tall: { src: "/img/look/platform.webp", srcSet: "/img/look/platform-900.webp 900w, /img/look/platform.webp 1493w", w: 1493, h: 2000, shoe: { x: 0.536, y: 0.8 } },
 };
@@ -141,7 +141,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div style={reduce ? undefined : { opacity: intro }} className="absolute right-4 top-20 sm:right-8">
-          <MediaTag tone="dark">AI-generated campaign still</MediaTag>
+          <MediaTag tone="dark">Campaign · Chapter 01 · Platform Local</MediaTag>
         </motion.div>
 
         <motion.div style={reduce ? { opacity: 0 } : { opacity: focusCopy }} className="pointer-events-none absolute left-5 top-[24%] max-w-sm text-paper sm:left-10">

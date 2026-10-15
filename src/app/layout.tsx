@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "COMET 2.0 — Mumbai in Motion",
     description: "A city that never stops.",
-    images: ["/img/board-2.webp"],
+    images: ["/img/look/platform-wide-1400.webp"],
   },
 };
 

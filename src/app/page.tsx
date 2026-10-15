@@ -2,7 +2,8 @@ import { Footer, Nav } from "@/components/Nav";
 import { Collection } from "@/components/sections/Collection";
 import { Details } from "@/components/sections/Details";
 import { Hero } from "@/components/sections/Hero";
-import { Lookbook } from "@/components/sections/Lookbook";
+import { Campaign } from "@/components/sections/Campaign";
+import { Studio } from "@/components/sections/Studio";
 import { Packaging } from "@/components/sections/Packaging";
 import { Postcard } from "@/components/sections/Postcard";
 import { Silhouette } from "@/components/sections/Silhouette";
@@ -19,7 +20,8 @@ export default function Home() {
         <Details />
         <Packaging />
         <Collection />
-        <Lookbook />
+        <Campaign />
+        <Studio />
         <Specs />
       </main>
       <Footer />

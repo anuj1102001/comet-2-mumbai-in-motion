@@ -71,8 +71,8 @@ export default function CaseStudy() {
             {[
               ["Type", "Concept · portfolio"],
               ["Scope", "Product, packaging, digital experience"],
-              ["Role", "Concept & creative direction, AI-assisted"],
-              ["Tools", "AI image model, Claude, Adobe Photoshop & Lightroom, Next.js"],
+              ["Role", "Concept, product & creative direction"],
+              ["Disciplines", "Product · packaging · campaign · web"],
             ].map(([k, v]) => (
               <div key={k} className="bg-paper p-4">
                 <dt className="eyebrow text-[10px] text-ink-3">{k}</dt>
@@ -115,8 +115,8 @@ export default function CaseStudy() {
                   <li>3 editions, 1 silhouette</li>
                   <li>Collectible poster box and inserts</li>
                   <li>COMET 2.0 identity</li>
-                  <li>8-chapter scroll story, live</li>
-                  <li>Studio photo set and 20 s launch reel</li>
+                  <li>{CHAPTERS.length}-chapter scroll story, live</li>
+                  <li>Three-world campaign and 20 s launch reel</li>
                 </ul>
                 <div className="mt-5 flex flex-wrap gap-2">
                   <OriginButton href="/" tone="dark" size="sm">
@@ -128,7 +128,7 @@ export default function CaseStudy() {
           </section>
           <figure className="mt-10">
             <ReelPlayer tone="dark" allowTall={false} />
-            <figcaption className="mt-3 text-xs text-ink-3">The launch reel: 20 seconds, cut in 16:9 and 9:16 from the studio photographs, rendered frame by frame from an HTML timeline.</figcaption>
+            <figcaption className="mt-3 text-xs text-ink-3">The launch reel: 20 seconds, cut in 16:9 and 9:16 from the studio frames, rendered frame by frame from an HTML timeline.</figcaption>
           </figure>
         </header>
 
@@ -141,30 +141,27 @@ export default function CaseStudy() {
           </div>
           <div>
             <p className="text-[17px] leading-relaxed text-ink">
-              I&apos;m the concept owner and creative director. The ideas are mine; the images and the code were produced with AI tools working from my direction.
+              I&apos;m the concept owner and creative director: the idea, the product, the packaging, the campaign and the way the story is told on this site.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-ink p-5">
-                <p className="eyebrow text-[10px] text-terracotta">What I did</p>
+                <p className="eyebrow text-[10px] text-terracotta">Concept &amp; design</p>
                 <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-ink">
                   <li>The concept: a sneaker built from Mumbai&apos;s movement, its trains, CST, postcards, street lettering and food.</li>
                   <li>The sneaker design ideas and the three editions.</li>
                   <li>The packaging concept: poster box, tissue, postcard, tag and dust bag.</li>
                   <li>The brand direction: the COMET 2.0 name and the comet mark.</li>
-                  <li>Directing the AI model with my ideas, and choosing the results.</li>
                 </ul>
               </div>
               <div className="rounded-2xl border border-line bg-paper-2 p-5">
-                <p className="eyebrow text-[10px] text-ink-3">What AI tools did</p>
+                <p className="eyebrow text-[10px] text-ink-3">Direction &amp; experience</p>
                 <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-ink-2">
-                  <li>An AI image model rendered the sneaker and packaging boards from my ideas.</li>
-                  <li>Claude (Anthropic) built this website and produced the studio composites and launch reel, using Adobe Photoshop and Lightroom.</li>
+                  <li>Art direction: the visual language drawn from trains, CST, postcards and street lettering.</li>
+                  <li>Campaign direction: three worlds, from the platform to the street to a red set, and the selection and sequencing of every frame.</li>
+                  <li>The digital experience: chapter structure, motion principles and this case study.</li>
                 </ul>
               </div>
             </div>
-            <p className="mt-6 text-sm leading-relaxed text-ink-2">
-              The renders are AI output, so they carry AI flaws, such as the misspelled मुबई on one sign. These are listed in section 06 rather than hidden.
-            </p>
           </div>
         </section>
 
@@ -388,7 +385,7 @@ export default function CaseStudy() {
                 <b className="block text-ink">Accessible by default</b>Skip-intro control, keyboard-reachable hotspots with labels, Esc to close details, a list alternative to every hotspot, and a static opening when reduced motion is requested.
               </li>
               <li className="rounded-2xl border border-line p-5">
-                <b className="block text-ink">Light where it counts</b>No WebGL, no animated filters, no scroll-jacking library. Only transform and opacity animate; images below the fold lazy-load; the illustrated opening uses CSS keyframes and pauses under reduced motion.
+                <b className="block text-ink">Light where it counts</b>No WebGL, no animated filters, no scroll-jacking library. Only transform and opacity animate; images below the fold lazy-load; the opening frame&apos;s slow drift pauses during the camera push and under reduced motion.
               </li>
             </ul>
           </div>
@@ -396,7 +393,7 @@ export default function CaseStudy() {
 
         <Section n="11" title="Final experience">
           <p className="text-[15px] leading-relaxed text-ink-2">
-            A cinematic opening on a CSMT platform that pushes in to the shoe, a silhouette sequence, the postcard system, eight explained details, a three-stage packaging story, a campaign frame and a product page that ends in this case study — not a checkout. The opening is illustrated rather than filmed: the platform is drawn in the same navy-etching language as the shoe&apos;s artwork, so the city and the product read as one world.
+            A cinematic opening on a CSMT platform that pushes in to the shoe, a silhouette sequence, the postcard system, eight explained details, a three-stage packaging story, a three-world campaign, the studio chapter and a product page that ends in this case study — not a checkout.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {[
@@ -409,13 +406,13 @@ export default function CaseStudy() {
             ].map(([f, cap]) => (
               <figure key={f}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/img/photo/${f}.webp`} alt={`${cap}, studio photograph`} loading="lazy" className="aspect-[3/2] w-full rounded-xl object-cover" />
+                <img src={`/img/photo/${f}.webp`} alt={`${cap}, studio frame`} loading="lazy" className="aspect-[3/2] w-full rounded-xl object-cover" />
                 <figcaption className="mt-1.5 text-xs text-ink-3">{cap}</figcaption>
               </figure>
             ))}
           </div>
           <p className="mt-4 text-sm leading-relaxed text-ink-2">
-            <b className="text-ink">Studio photography.</b> Each product was cut from its board with Adobe Photoshop, staged on a paper sweep with shadows traced from its own outline, then graded in Lightroom and finished with grain. The product pixels are never redrawn. These are composites of concept renders, not photographs of a manufactured shoe.
+            <b className="text-ink">Studio frames.</b> Each product was cut from its board with Adobe Photoshop, staged on a paper sweep with shadows traced from its own outline, then graded in Lightroom and finished with grain. The product pixels are never redrawn. These are composites of concept renders, not photographs of a manufactured shoe.
           </p>
           <div className="mt-6">
             <OriginButton href="/">
@@ -431,7 +428,7 @@ export default function CaseStudy() {
               <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[15px] text-ink-2">
                 <li>Three sneaker editions on one silhouette</li>
                 <li>Collectible box, tissue, postcard, tag and bag</li>
-                <li>Eight-chapter scroll story, with slots ready for the cinematic shots</li>
+                <li>{CHAPTERS.length}-chapter scroll story with a three-world campaign</li>
                 <li>COMET 2.0 identity: a comet mark (the shoe&apos;s four-point star trailing a tapered tail) and wordmark</li>
                 <li>Bilingual type system and design tokens</li>
                 <li>This case study</li>
@@ -440,7 +437,7 @@ export default function CaseStudy() {
             <div>
               <p className="eyebrow text-[10px] text-ink-3">Next, if this went further</p>
               <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[15px] text-ink-2">
-                <li>Generate and edit the cinematic shots, then swap them into the video slots</li>
+                <li>Produce the campaign&apos;s motion pieces for the video slots</li>
                 <li>Sculpt a production 3D model on a real last before bringing back real-time 3D</li>
                 <li>Correct the board lettering and redraw the art as vector separations</li>
                 <li>Material sampling and print strike-offs on canvas</li>

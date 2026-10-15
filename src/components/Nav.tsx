@@ -8,22 +8,23 @@ import { DesignerCredit } from "./DesignerCredit";
 import { OriginButton } from "@/components/OriginButton";
 
 
+/** Header links; `match` lists the chapters during which each one shows as current. */
 const PRIMARY = [
-  { href: "/#city", label: "The Story" },
-  { href: "/#silhouette", label: "The Sneaker" },
-  { href: "/#details", label: "Design Details" },
-  { href: "/#packaging", label: "Packaging" },
-  { href: "/#specs", label: "Specifications" },
+  { href: "/#city", label: "Story", match: ["city", "reveal"] },
+  { href: "/#silhouette", label: "Sneaker", match: ["silhouette", "postcard"] },
+  { href: "/#details", label: "Design Details", match: ["details"] },
+  { href: "/#packaging", label: "Packaging", match: ["packaging"] },
+  { href: "/#studio", label: "Studio", match: ["studio"] },
 ];
 
-const DARK = new Set(["city", "reveal", "packaging", "collection"]);
+const DARK = new Set(["city", "reveal", "packaging", "collection", "studio"]);
 
 /** Which chapter sits under the middle of the viewport — one observer, no scroll handler. */
 function useActiveChapter(enabled: boolean) {
   const [active, setActive] = useState("city");
   useEffect(() => {
     if (!enabled) return;
-    const ids = ["city", "silhouette", "postcard", "details", "packaging", "collection", "specs"];
+    const ids = ["city", "silhouette", "postcard", "details", "packaging", "collection", "campaign", "studio", "specs"];
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
       (entries) => {
@@ -55,6 +56,8 @@ export function Nav({ home = true }: { home?: boolean }) {
   // the bar sits over dark sections without a background; elsewhere it gets a paper backing
   const overDark = home && DARK.has(active) && active !== "reveal";
   const solid = !atTop && !overDark;
+  // dark chapters with content scrolling underneath (not the full-bleed opening) get a charcoal backing
+  const smoke = !atTop && overDark && active !== "city";
 
   useEffect(() => {
     const on = () => setAtTop(window.scrollY < 40);
@@ -68,20 +71,27 @@ export function Nav({ home = true }: { home?: boolean }) {
       <a href="#silhouette" className="sr-only z-[90] rounded bg-ink px-3 py-2 text-paper focus:not-sr-only focus:fixed focus:left-3 focus:top-3">
         Skip to the sneaker
       </a>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${solid ? "bg-paper/92" : "bg-transparent"}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${solid ? "bg-paper/92" : smoke ? "bg-char/92" : "bg-transparent"}`}>
         <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-4 sm:px-8 lg:px-12">
           <Link href="/" className={`transition-colors duration-500 ${overDark ? "text-paper" : "text-ink"}`} aria-label="COMET 2.0 — home">
             <CometLogo size="sm" />
           </Link>
           <nav aria-label="Primary" className="hidden lg:block">
             <ul className={`flex items-center gap-7 text-[13px] font-medium transition-colors duration-500 ${overDark ? "text-paper/80" : "text-ink-2"}`}>
-              {PRIMARY.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} className={overDark ? "hover:text-paper" : "hover:text-ink"}>
-                    {l.label}
-                  </a>
-                </li>
-              ))}
+              {PRIMARY.map((l) => {
+                const on = home && l.match.includes(active);
+                return (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      aria-current={on ? "location" : undefined}
+                      className={`relative py-1 transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-terracotta after:transition-transform after:duration-500 ${on ? (overDark ? "text-paper after:scale-x-100" : "text-ink after:scale-x-100") : `after:scale-x-0 ${overDark ? "hover:text-paper" : "hover:text-ink"}`}`}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
           <div className="flex items-center gap-2">
@@ -130,11 +140,23 @@ export function Nav({ home = true }: { home?: boolean }) {
             className="fixed inset-x-3 top-16 z-50 max-h-[80svh] overflow-y-auto rounded-3xl border border-line bg-paper p-3 shadow-xl lg:hidden"
           >
             <ul>
-              {[...CHAPTERS.map((c) => ({ href: `/#${c.id}`, label: c.label, n: c.n })), { href: "/case-study", label: "Case study", n: "→" }].map((l) => (
+              {PRIMARY.map((l) => {
+                const on = home && l.match.includes(active);
+                return (
+                  <li key={l.href}>
+                    <a href={l.href} onClick={() => setOpen(false)} aria-current={on ? "location" : undefined} className={`flex items-center justify-between rounded-2xl px-4 py-3 text-lg text-ink hover:bg-paper-2 ${on ? "bg-paper-2" : ""}`}>
+                      <span className="h-display">{l.label}</span>
+                      <span className="font-mono text-xs text-ink-3">{CHAPTERS.find((c) => c.id === l.match[0])?.n}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+            <ul className="mt-2 grid grid-cols-2 gap-1 border-t border-line pt-3">
+              {[...CHAPTERS.filter((c) => !PRIMARY.some((l) => l.match[0] === c.id)).map((c) => ({ href: `/#${c.id}`, label: c.label })), { href: "/case-study", label: "Case study →" }].map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} onClick={() => setOpen(false)} className="flex items-center justify-between rounded-2xl px-4 py-3 text-lg text-ink hover:bg-paper-2">
-                    <span className="h-display">{l.label}</span>
-                    <span className="font-mono text-xs text-ink-3">{l.n}</span>
+                  <a href={l.href} onClick={() => setOpen(false)} className="block rounded-xl px-4 py-2 text-sm text-ink-2 hover:bg-paper-2">
+                    {l.label}
                   </a>
                 </li>
               ))}
@@ -178,7 +200,7 @@ export function Footer() {
         <div className="text-sm text-ink-2">
           <p className="eyebrow text-[10px] text-ink-3">Colophon</p>
           <p className="mt-3 leading-relaxed">
-            Next.js and Motion. Type: Archivo, DM Serif Display, IBM Plex Mono, Yatra One and Tiro Devanagari Hindi. Product imagery comes from the approved concept boards and is labelled as concept renders.
+            Next.js and Motion. Type: Archivo, DM Serif Display, IBM Plex Mono, Yatra One and Tiro Devanagari Hindi. Product views are the approved concept renders; the campaign frames are art-directed around them.
           </p>
           <p className="mt-3 font-mono text-xs text-ink-3">19.0760° N · 72.8777° E</p>
         </div>

@@ -40,7 +40,7 @@ export function Collection() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/img/photo/06-campaign-box-and-shoe.webp"
-                  alt="COMET 2.0 Platform Local sneaker in front of its poster box, studio photograph"
+                  alt="COMET 2.0 Platform Local sneaker in front of its poster box, studio frame"
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover object-[50%_62%]"
@@ -59,7 +59,7 @@ export function Collection() {
               <p className="eyebrow text-paper/60">The launch film · 20 s</p>
               <p className="h-display mt-2 text-3xl">The collection, in motion.</p>
             </div>
-            <p className="max-w-sm text-sm leading-relaxed text-paper/60">Built from the studio photographs. Silent, and it pauses when you scroll away.</p>
+            <p className="max-w-sm text-sm leading-relaxed text-paper/60">Built from the studio frames. Silent, and it pauses when you scroll away.</p>
           </div>
           <ReelPlayer tone="dark" />
         </Reveal>
