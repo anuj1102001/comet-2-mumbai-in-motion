@@ -28,7 +28,7 @@ const MATERIALS = [
   ["Insole", "Printed footbed"],
 ];
 
-/** Chapter 8: the product page — a launch layout for a concept, with no price and no checkout. */
+/** Chapter 9: the product page — a launch layout for a concept, with no price and no checkout. */
 export function Specs() {
   const colorway = useStore((s) => s.colorway);
   const cw = colorwayById(colorway);
@@ -43,7 +43,7 @@ export function Specs() {
   return (
     <section id="specs" aria-labelledby="h-specs" className="relative bg-paper">
       <div className="mx-auto max-w-[1400px] px-4 pb-24 pt-24 sm:px-8 lg:px-12 lg:pt-28">
-        <p className="eyebrow text-ink-3">08 · Product specifications</p>
+        <p className="eyebrow text-ink-3">09 · Product specifications</p>
         <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
           <div className="lg:sticky lg:top-20 lg:self-start">
             <div className="relative aspect-[5/4] overflow-hidden rounded-[22px] border border-line bg-paper-2">

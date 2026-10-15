@@ -7,19 +7,24 @@ import { SHOTS } from "@/lib/media";
 import { scrollToId } from "@/lib/scroll";
 import { OriginButton } from "@/components/OriginButton";
 import { useStore } from "@/lib/store";
-import { Backdrop, Canopy, Commuter, Crowd, Platform, SHOE_POINT, Train } from "../art/CityScene";
 import { CometLogo } from "../brand/Logo";
 import { MediaTag } from "../ui";
 
 /**
  * Chapters 1–2: the city, then the reveal.
  *
- * The scene plays on its own (time-based, not scrubbed), so nothing waits on
- * scroll. Scrolling 1.6 screens pushes the camera toward the commuter's shoe
- * and cross-fades to the product on paper. Only transform and opacity animate.
- * When the Higgsfield footage lands (lib/media.ts), the video replaces the
- * illustrated opening in the same slot.
+ * Opens on the campaign photograph at the CSMT platform (a landscape crop on
+ * wide screens, the original portrait on phones). Scrolling 1.6 screens pushes
+ * the camera toward the commuter's shoe and cross-fades to the product on
+ * paper. Only transform and opacity animate. When generated footage lands
+ * (lib/media.ts), the video replaces the photograph in the same slot.
  */
+const OPENING = {
+  // generative-expanded to landscape in Photoshop; shoe = the near (left) sneaker, as a fraction of the image
+  wide: { src: "/img/look/platform-wide.webp", srcSet: "/img/look/platform-wide-1400.webp 1400w, /img/look/platform-wide.webp 2400w", w: 3293, h: 2000, shoe: { x: 0.453, y: 0.792 } },
+  tall: { src: "/img/look/platform.webp", srcSet: "/img/look/platform-900.webp 900w, /img/look/platform.webp 1493w", w: 1493, h: 2000, shoe: { x: 0.536, y: 0.8 } },
+};
+
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -31,20 +36,21 @@ export function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   // sprung progress: the camera push glides instead of tracking each wheel notch
   const p = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.0005 });
-  // freeze the animatic while the camera pushes in: a scaled layer that also repaints every frame is what makes zooms stutter
+  // freeze the slow drift while the camera pushes in: a scaled layer that also repaints every frame is what makes zooms stutter
   const [frozen, setFrozen] = useState(false);
   useMotionValueEvent(scrollYProgress, "change", (v) => setFrozen((f) => (f === v > 0.04 ? f : v > 0.04)));
 
-  // where the commuter's shoe lands on screen (the SVG uses "slice" scaling)
-  const [origin, setOrigin] = useState({ x: 0.52, y: 0.93 });
+  // where the commuter's shoe lands on screen (the photo uses object-cover scaling)
+  const [origin, setOrigin] = useState({ x: 0.45, y: 0.79 });
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
     const measure = () => {
       const w = el.clientWidth;
       const h = el.clientHeight;
-      const s = Math.max(w / 1600, h / 900);
-      setOrigin({ x: ((w - 1600 * s) / 2 + SHOE_POINT.x * s) / w, y: ((h - 900 * s) / 2 + SHOE_POINT.y * s) / h });
+      const art = w >= h ? OPENING.wide : OPENING.tall;
+      const s = Math.max(w / art.w, h / art.h);
+      setOrigin({ x: ((w - art.w * s) / 2 + art.shoe.x * art.w * s) / w, y: ((h - art.h * s) / 2 + art.shoe.y * art.h * s) / h });
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -77,7 +83,19 @@ export function Hero() {
           {shot.ready ? (
             <video className="h-full w-full object-cover" src={shot.video} poster={shot.poster} autoPlay muted loop playsInline preload="metadata" />
           ) : (
-            <Animatic colors={cw.colors} still={!!reduce} frozen={frozen} />
+            <picture className={`block h-full w-full ${frozen ? "anim-paused" : ""}`}>
+              <source media="(min-aspect-ratio: 1/1)" srcSet={OPENING.wide.srcSet} sizes="100vw" />
+              <img
+                src={OPENING.tall.src}
+                srcSet={OPENING.tall.srcSet}
+                sizes="100vw"
+                alt="A commuter sits in the open door of a Mumbai local train at CSMT, wearing COMET 2.0 Platform Local sneakers"
+                fetchPriority="high"
+                decoding="async"
+                className={`h-full w-full object-cover ${reduce ? "" : "anim-kenburns"}`}
+                style={{ transformOrigin: `${origin.x * 100}% ${origin.y * 100}%` }}
+              />
+            </picture>
           )}
         </motion.div>
         {!reduce && <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ opacity: vignette, backgroundImage: spot }} />}
@@ -122,6 +140,10 @@ export function Hero() {
           </div>
         </motion.div>
 
+        <motion.div style={reduce ? undefined : { opacity: intro }} className="absolute right-4 top-20 sm:right-8">
+          <MediaTag tone="dark">AI-generated campaign still</MediaTag>
+        </motion.div>
+
         <motion.div style={reduce ? { opacity: 0 } : { opacity: focusCopy }} className="pointer-events-none absolute left-5 top-[24%] max-w-sm text-paper sm:left-10">
           <p className="eyebrow text-paper/70">Somewhere in the crowd</p>
           <p className="h-display mt-3 text-[clamp(2rem,4vw,3.4rem)]">One detail moves differently.</p>
@@ -136,31 +158,3 @@ export function Hero() {
     </section>
   );
 }
-
-/**
- * Temporary stand-in for Shot A/B: the platform drawn in the boards' etching
- * language. The train glides in once and settles; the crowd breathes. CSS
- * animations only, no filters.
- */
-function Animatic({ colors, still, frozen }: { colors: Parameters<typeof Commuter>[0]["colors"]; still: boolean; frozen: boolean }) {
-  return (
-    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className={`h-full w-full ${frozen ? "anim-paused" : ""}`} aria-hidden>
-      <Backdrop />
-      <g className={still ? undefined : "anim-drift"}>
-        <Canopy />
-      </g>
-      <g className={still ? undefined : "anim-train"} style={still ? { transform: "translateX(-300px)" } : undefined}>
-        <Train />
-      </g>
-      <Platform />
-      <g className={still ? undefined : "anim-breathe"}>
-        <Crowd seed={3} count={16} y={800} scale={1.05} spread={2100} />
-      </g>
-      <Commuter colors={colors} />
-      <g className={still ? undefined : "anim-breathe-2"}>
-        <Crowd seed={8} count={7} y={1010} scale={2.1} spread={2400} x0={-160} density={2} gap={[560, 1000]} />
-      </g>
-    </svg>
-  );
-}
-

@@ -161,8 +161,11 @@ main > section, footer { background-image: var(--grain); background-size: 160px 
 @keyframes train-in { from { transform: translateX(1750px); } to { transform: translateX(-260px); } }
 @keyframes breathe { to { transform: translateY(-3px); } }
 @keyframes shuffle { to { transform: translateX(-14px); } }
+/* The opening photograph breathes: a very slow push toward the shoe. */
+.anim-kenburns { animation: kenburns 26s ease-in-out infinite alternate; }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.07); } }
 @media (prefers-reduced-motion: reduce) {
-  .anim-train, .anim-breathe, .anim-breathe-2, .anim-drift { animation: none; }
+  .anim-train, .anim-breathe, .anim-breathe-2, .anim-drift, .anim-kenburns { animation: none; }
 }
 
 /* Board renders carry their board background: feather the edges so the shoe sits on the page, not in a box. */

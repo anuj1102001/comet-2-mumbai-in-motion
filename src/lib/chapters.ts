@@ -1,4 +1,4 @@
-/** The eight chapters of the experience, each its own anchor (shared by server and client code). */
+/** The nine chapters of the experience, each its own anchor (shared by server and client code). */
 export const CHAPTERS = [
   { id: "city", n: "01", label: "The city" },
   { id: "reveal", n: "02", label: "The reveal" },
@@ -7,5 +7,6 @@ export const CHAPTERS = [
   { id: "details", n: "05", label: "Details" },
   { id: "packaging", n: "06", label: "Packaging" },
   { id: "collection", n: "07", label: "Collection" },
-  { id: "specs", n: "08", label: "Specifications" },
+  { id: "lookbook", n: "08", label: "Lookbook" },
+  { id: "specs", n: "09", label: "Specifications" },
 ];
