@@ -21,17 +21,19 @@ export const FRAMES = {
   platformDetail: { id: "platform-detail", src: "/img/look/platform-detail.webp", alt: "Low-angle close-up of COMET 2.0 Platform Local sneakers on a worn platform floor", caption: "Detail · at platform level", pos: "40% 50%" },
   vadapav: { id: "vadapav", ...frame("vadapav", 2000), alt: "A man eats a vada pav on the kerb outside a snack stall, wearing COMET 2.0 sneakers", caption: "Vada pav, between trains", pos: "50% 60%" },
   gateway: { id: "gateway", ...frame("gateway", 633), alt: "A young man sits on the sea wall at the Gateway of India in COMET 2.0 sneakers", caption: "Gateway of India · golden hour", pos: "50% 70%" },
-  triptych: { id: "triptych", ...frame("triptych", 505), alt: "Three on-foot views of COMET 2.0 on asphalt: side, front and heel", caption: "Side · front · heel", pos: "50% 50%" },
   box: { id: "box", ...frame("box-street", 512), alt: "The COMET 2.0 Mumbai poster box on the street", caption: "The poster box, on the street", pos: "50% 50%" },
   walk: { id: "walk", ...frame("studio-walk", 2000), alt: "A model in a cream shirt walks across a vermilion set in COMET 2.0 sneakers", caption: "In stride", pos: "50% 50%" },
   seated: { id: "seated", ...frame("studio-seated", 1493), alt: "A model in black sits on a cream plinth against vermilion, wearing COMET 2.0 sneakers", caption: "Seated · cream plinth", pos: "50% 55%" },
   step: { id: "step", ...frame("studio-step", 2000), alt: "Close crop of a COMET 2.0 Platform Local sneaker mid-step on a glossy red floor", caption: "Lateral, mid-step", pos: "50% 55%" },
   pair: { id: "pair", ...frame("studio-pair", 2000), alt: "A pair of COMET 2.0 sneakers on a glossy red floor", caption: "The pair · hero object", pos: "50% 55%" },
+  billboard: { id: "billboard", src: "/img/ads/billboard.webp", alt: "Station hoarding: COMET 2.0 sneakers on the CSMT platform with the line From the platform to the street", caption: "Station hoarding · 3:1", pos: "50% 50%" },
+  post: { id: "post", src: "/img/ads/post.webp", alt: "Feed post on vermilion: From the city to the spotlight", caption: "Feed post · 4:5", pos: "50% 50%" },
+  story: { id: "story", src: "/img/ads/story.webp", alt: "Story: a man eats a vada pav, with the line Same city. Different stories.", caption: "Story · 9:16", pos: "50% 50%" },
   suit: { id: "suit", ...frame("studio-suit", 1493), alt: "A model in a charcoal suit and COMET 2.0 sneakers on the vermilion set", caption: "Tailored", pos: "50% 45%" },
 } satisfies Record<string, Frame>;
 
 const F = FRAMES;
-const ORDER: Frame[] = [F.platformWide, F.platform, F.platformDetail, F.vadapav, F.gateway, F.triptych, F.box, F.walk, F.seated, F.step, F.pair, F.suit];
+const ORDER: Frame[] = [F.platformWide, F.platform, F.platformDetail, F.vadapav, F.gateway, F.box, F.walk, F.seated, F.step, F.pair, F.suit, F.billboard, F.post, F.story];
 
 /** The three visual worlds (also listed in the Studio chapter). */
 export const WORLDS = [
@@ -90,11 +92,9 @@ export function Campaign() {
             <Tile f={F.vadapav} onOpen={show} className="aspect-[4/3] lg:col-span-8 lg:aspect-auto" />
             <Tile f={F.gateway} onOpen={show} className="aspect-[4/5] lg:col-span-4 lg:aspect-auto" />
           </Row>
-          <Row short>
-            <Tile f={F.triptych} onOpen={show} className="aspect-[3/4] lg:col-span-4 lg:aspect-auto" />
-            <div className="grid gap-3 overflow-hidden rounded-[22px] bg-indigo text-paper sm:grid-cols-2 sm:gap-0 lg:col-span-8">
-              <Tile f={F.box} onOpen={show} flush className="aspect-[512/326] sm:aspect-auto" />
-              <div className="flex flex-col justify-between p-6 sm:p-8">
+          <div className="grid overflow-hidden rounded-[22px] bg-indigo text-paper sm:grid-cols-2">
+            <Tile f={F.box} onOpen={show} flush className="aspect-[512/326]" />
+            <div className="flex flex-col justify-between p-6 sm:p-10">
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/60">Sagar · Sapne · Sheher</p>
                 <p className="h-display mt-10 text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.05]">
                   Same city.
@@ -102,9 +102,8 @@ export function Campaign() {
                   Different stories.
                 </p>
                 <p className="mt-6 text-sm leading-relaxed text-paper/70">The line printed on the lid travels with the shoe into the street.</p>
-              </div>
             </div>
-          </Row>
+          </div>
         </World>
 
         {/* 03 · The Red Set */}
@@ -120,6 +119,30 @@ export function Campaign() {
           </Row>
           <BrandFrame />
         </World>
+
+        {/* the campaign as it would run: proposed placements */}
+        <div id="campaign-assets" className="mt-20 scroll-mt-20">
+          <Reveal className="mb-6 grid gap-3 border-t border-ink pt-5 sm:grid-cols-[6rem_1fr_minmax(0,24rem)] sm:items-baseline">
+            <span className="font-mono text-sm text-terracotta">Assets</span>
+            <h3 className="h-display text-[clamp(1.8rem,3.4vw,2.8rem)] leading-none">Out in the city</h3>
+            <p className="text-sm leading-relaxed text-ink-2">Proposed placements: a station hoarding for the commute, a feed post for the reveal, a story for the street. One line per world, the same lockup on each.</p>
+          </Reveal>
+          <div className="grid gap-3 sm:gap-4">
+            <Tile f={F.billboard} plain onOpen={show} className="aspect-[3/1]" />
+            <div className="grid grid-cols-[1fr_0.703fr] items-start gap-3 sm:gap-4 lg:grid-cols-[1fr_0.703fr_1.15fr]">
+              <Tile f={F.post} plain onOpen={show} className="aspect-[4/5]" />
+              <Tile f={F.story} plain onOpen={show} className="aspect-[9/16]" />
+              <div className="col-span-2 flex flex-col justify-end self-stretch rounded-[22px] border border-line p-6 lg:col-span-1">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-ink-3">Proposed rollout</p>
+                <ol className="mt-4 space-y-3 text-sm leading-relaxed text-ink-2">
+                  <li><b className="text-ink">Tease ·</b> the platform hoarding and the launch film, no product name.</li>
+                  <li><b className="text-ink">Reveal ·</b> feed posts and the red-set frames: the shoe as hero object.</li>
+                  <li><b className="text-ink">Drop ·</b> stories from the street, the poster box, the site as the destination.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <p className="mt-6 font-mono text-[11px] uppercase tracking-wider text-ink-3">Select any frame to view it full screen · {ORDER.length} frames</p>
       </div>
@@ -162,7 +185,7 @@ function BrandFrame() {
   );
 }
 
-function Tile({ f, onOpen, className = "", flush }: { f: Frame; onOpen: (f: Frame) => void; className?: string; flush?: boolean }) {
+function Tile({ f, onOpen, className = "", flush, plain }: { f: Frame; onOpen: (f: Frame) => void; className?: string; flush?: boolean; plain?: boolean }) {
   const reduce = useReduced();
   return (
     <motion.button
@@ -186,8 +209,12 @@ function Tile({ f, onOpen, className = "", flush }: { f: Frame; onOpen: (f: Fram
         style={{ objectPosition: f.pos }}
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.035]"
       />
-      <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
-      <span className="absolute bottom-4 left-4 font-mono text-[11px] uppercase tracking-wider text-white/90 sm:bottom-5 sm:left-5">{f.caption}</span>
+      {!plain && (
+        <>
+          <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
+          <span className="absolute bottom-4 left-4 font-mono text-[11px] uppercase tracking-wider text-white/90 sm:bottom-5 sm:left-5">{f.caption}</span>
+        </>
+      )}
       <span aria-hidden className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-white/85 text-ink opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
         <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.6">
           <path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" />

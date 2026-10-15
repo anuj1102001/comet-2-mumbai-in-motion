@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site),
   title: "COMET 2.0 — Mumbai in Motion",
   description:
-    "COMET 2.0 — Mumbai in Motion: a cinematic product story for an original sneaker concept inspired by Mumbai's local trains, CST, vintage postcards and street lettering. A UX/UI and product design case study.",
+    "COMET 2.0 — Mumbai in Motion: an unsolicited concept collection for an Indian sneaker brand. Product, packaging, campaign and a cinematic digital experience built from Mumbai's local trains, CSMT, vintage postcards and street lettering. An independent portfolio case study.",
   openGraph: {
     title: "COMET 2.0 — Mumbai in Motion",
     description: "A city that never stops.",

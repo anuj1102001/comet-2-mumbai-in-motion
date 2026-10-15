@@ -6,6 +6,7 @@ import { COLORWAYS } from "@/lib/colorways";
 import { MOTION } from "@/lib/media";
 import { Reveal } from "../ui";
 import { WORLDS } from "./Campaign";
+import { Iterations, PackagingStructure } from "./StudioProcess";
 
 const LOCAL = COLORWAYS[0];
 
@@ -24,12 +25,6 @@ const PLACEMENT = [
   ["Vada pav", "The only full-colour illustration, placed low near the toe to be discovered rather than announced."],
   ["Typography", "Boxed मुंबई / MUMBAI station tiles on the quarter, MUMBAI embroidered at the heel, COMET woven on the tongue."],
   ["Materials", "Cream canvas upper, navy suede star and heel counter, chai-brown laces, gum herringbone outsole with a star medallion."],
-];
-
-const PACKAGING = [
-  { img: "/img/box-closed.webp", title: "The poster box", note: "The lid is a poster: the shoe breaks the frame, CST etched behind, a red sun." },
-  { img: "/img/box-open.webp", title: "Wrapping", note: "Indigo toile tissue redrawn with Mumbai scenes, closed with a star seal." },
-  { img: "/img/box-inserts.webp", title: "Postcard, tag and bag", note: "A postcard to send home, a ticket-style hang tag and a navy dust bag." },
 ];
 
 const PALETTE = [
@@ -51,9 +46,9 @@ const DECISIONS = [
 ];
 
 /**
- * Chapter 9: the studio — the thinking and craft behind the concept: art
- * direction, product design, packaging, campaign direction and the decisions
- * that tie them together.
+ * Chapter 9: the studio — the process behind the concept: references,
+ * iterations, product rationale, packaging structure, campaign direction and
+ * the decisions that tie them together.
  */
 export function Studio() {
   return (
@@ -68,11 +63,11 @@ export function Studio() {
               <span className="italic text-saffron">behind the work.</span>
             </h2>
             <p className="max-w-md text-[15px] leading-relaxed text-paper/70">
-              One idea runs through every part of COMET 2.0: Mumbai in motion. Here is how it shaped the art direction, the shoe, the box, the campaign and the decisions in between.
+              One idea runs through every part of COMET 2.0: Mumbai in motion. This is the process behind it: the references, the directions tried and dropped, the structure of the box and the decisions in between.
             </p>
           </div>
           <ol className="mt-12 flex flex-wrap gap-x-8 gap-y-2 border-t border-white/15 pt-5 font-mono text-[11px] uppercase tracking-wider text-paper/50">
-            {["Art direction", "Product design", "Packaging design", "Campaign direction", "Design decisions"].map((t, i) => (
+            {["Art direction", "Iterations", "Product design", "Packaging structure", "Campaign direction", "Design decisions"].map((t, i) => (
               <li key={t}>
                 <span className="text-terracotta">{String(i + 1).padStart(2, "0")}</span> {t}
               </li>
@@ -87,7 +82,7 @@ export function Studio() {
                 <Reveal delay={i * 0.05}>
                   <div className="overflow-hidden rounded-2xl bg-paper">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={r.img} alt="" loading="lazy" decoding="async" className="aspect-square w-full object-cover" />
+                    <img src={r.img} alt="" loading="lazy" decoding="async" className={`w-full object-cover ${i === 4 ? "aspect-[2/1] lg:aspect-square" : "aspect-square"}`} />
                   </div>
                   <p className="mt-3 font-semibold">{r.title}</p>
                   <p className="mt-1 text-[13px] leading-relaxed text-paper/65">{r.note}</p>
@@ -97,30 +92,19 @@ export function Studio() {
           </ul>
         </Block>
 
-        <Block n="02" title="Product design" intro="Platform Local from every side. The silhouette is a classic low-top court shoe; the city lives in where each graphic sits.">
+        <Block n="02" title="Iterations" intro="What changed on the way, and why. Each of these was a real fork in the project.">
+          <Iterations />
+        </Block>
+
+        <Block n="03" title="Product design" intro="Platform Local from every side. The silhouette is a classic low-top court shoe; the city lives in where each graphic sits.">
           <ProductViewer />
         </Block>
 
-        <Block n="03" title="Packaging design" intro="Box, wrap and inserts as one system: the same etching line, the same two scripts, the same navy and red.">
-          <div className="grid gap-4 sm:grid-cols-3">
-            {PACKAGING.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.06}>
-                <figure>
-                  <div className="overflow-hidden rounded-2xl bg-paper">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.img} alt={`${p.title}: ${p.note}`} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
-                  </div>
-                  <figcaption className="mt-3">
-                    <b className="block">{p.title}</b>
-                    <span className="mt-1 block text-[13px] leading-relaxed text-paper/65">{p.note}</span>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
+        <Block n="04" title="Packaging structure" intro="A two-piece box with the lid as a poster. Proposed dimensions; the unboxing is paced in three beats.">
+          <PackagingStructure />
         </Block>
 
-        <Block n="04" title="Campaign direction" intro="Three worlds, one product. The camera language moves from observed to controlled as the campaign travels from the platform to the set.">
+        <Block n="05" title="Campaign direction" intro="Three worlds, one product. The camera language moves from observed to controlled as the campaign travels from the platform to the set.">
           <div className="grid gap-4 md:grid-cols-3">
             {WORLDS.map((w, i) => (
               <Reveal key={w.id} delay={i * 0.06}>
@@ -149,7 +133,7 @@ export function Studio() {
           </div>
         </Block>
 
-        <Block n="05" title="Design decisions" intro="Why it looks the way it does, and how the physical product and the digital experience share one system.">
+        <Block n="06" title="Design decisions" intro="Why it looks the way it does, and how the physical product and the digital experience share one system.">
           <ul className="mb-10 grid grid-cols-3 gap-3 sm:grid-cols-6">
             {PALETTE.map(([name, hex]) => (
               <li key={hex}>

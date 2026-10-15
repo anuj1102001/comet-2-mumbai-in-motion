@@ -107,7 +107,7 @@ export function Nav({ home = true }: { home?: boolean }) {
       </header>
 
       {home && (
-        <nav aria-label="Chapters" className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 xl:block">
+        <nav aria-label="Chapters" className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 2xl:block">
           <ol className="flex flex-col items-end gap-2">
             {CHAPTERS.map((c) => {
               const on = active === c.id;
@@ -176,7 +176,7 @@ export function Footer() {
           <CometLogo size="lg" className="text-ink" />
           <p className="wide mt-4 text-xs font-semibold tracking-[0.42em] text-ink-2">MUMBAI IN MOTION</p>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-2">
-            COMET 2.0 is a fictional sneaker label, and Mumbai in Motion is an original product and digital-experience concept made as a portfolio case study. Nothing here is for sale, and no product has been manufactured.
+            Mumbai in Motion is an unsolicited concept collection for COMET, the Indian sneaker brand, made as an independent portfolio case study. It is not affiliated with, commissioned or endorsed by COMET; the name and comet mark belong to their owner. Nothing here is for sale, and no pair has been manufactured.
           </p>
           <DesignerCredit />
         </div>

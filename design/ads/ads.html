@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=DM+Serif+Display&family=IBM+Plex+Mono:wght@500&family=Yatra+One&display=block" rel="stylesheet" />
+<style>
+  /* Campaign advertising assets. scripts/ads.mjs screenshots each .ad at 1x. */
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #333; padding: 40px; display: grid; gap: 40px; justify-items: start; font-family: Archivo, sans-serif; }
+  .ad { position: relative; overflow: hidden; color: #f3ead8; }
+  .ad img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .scrim { position: absolute; inset: 0; }
+  .serif { font-family: "DM Serif Display", serif; font-weight: 400; letter-spacing: -0.01em; line-height: 1.02; }
+  .wide { font-weight: 600; letter-spacing: 0.42em; text-transform: uppercase; }
+  .mono { font-family: "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: 0.14em; }
+  .deva { font-family: "Yatra One", serif; }
+  .lock { display: flex; align-items: center; gap: 18px; }
+  .lock svg { display: block; }
+  .word { font-weight: 700; letter-spacing: 0.32em; }
+  /* billboard: railway station hoarding, 3:1 */
+  #billboard { width: 2400px; height: 800px; }
+  /* feed post 4:5 */
+  #post { width: 1080px; height: 1350px; background: #9e2521; }
+  /* story 9:16 */
+  #story { width: 1080px; height: 1920px; }
+</style>
+</head>
+<body>
+<template id="mark"><svg viewBox="60 75 860 285" fill="currentColor"><path d="M65 345 Q380 262 668 196 Q694 165 700 80 Q742 188 915 185 Q762 230 755 355 Q712 262 676 266 Q380 300 65 345 Z"/></svg></template>
+
+<section class="ad" id="billboard">
+  <img class="bg" src="../../public/img/look/platform-wide.webp" style="object-position: 50% 100%" />
+  <div class="scrim" style="background: linear-gradient(270deg, rgba(20,18,16,.86) 0%, rgba(20,18,16,.5) 30%, rgba(20,18,16,0) 52%)"></div>
+  <div style="position:absolute; right:110px; top:110px; bottom:110px; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end; text-align:right; width: 1000px">
+    <div class="lock"><span class="mark" style="width:120px"></span><span class="word" style="font-size:44px">COMET 2.0</span></div>
+    <div>
+      <p class="serif" style="font-size:92px">From the platform<br/>to the street.</p>
+      <p class="wide" style="margin-top:38px; font-size:24px">Mumbai in Motion · Platform Local</p>
+    </div>
+  </div>
+</section>
+
+<section class="ad" id="post">
+  <img class="bg" src="../../public/img/look/studio-step.webp" style="height: 70%; object-position: 50% 60%" />
+  <div class="scrim" style="background: linear-gradient(180deg, rgba(158,37,33,0) 45%, #9e2521 70%)"></div>
+  <div style="position:absolute; left:80px; right:80px; bottom:80px">
+    <p class="mono" style="font-size:22px; opacity:.75">Chapter 03 · The Red Set</p>
+    <p class="serif" style="font-size:104px; margin-top:22px">From the city<br/>to the spotlight.</p>
+    <div style="margin-top:48px; display:flex; justify-content:space-between; align-items:flex-end">
+      <div class="lock"><span class="mark" style="width:90px"></span><span class="word" style="font-size:32px">COMET 2.0</span></div>
+      <p class="wide" style="font-size:18px">Mumbai in Motion</p>
+    </div>
+  </div>
+</section>
+
+<section class="ad" id="story">
+  <img class="bg" src="../../public/img/look/vadapav.webp" style="object-position: 58% 50%" />
+  <div class="scrim" style="background: linear-gradient(180deg, rgba(20,18,16,.75) 0%, rgba(20,18,16,0) 26%, rgba(20,18,16,0) 55%, rgba(20,18,16,.92) 82%)"></div>
+  <div style="position:absolute; left:80px; right:80px; top:110px" class="lock"><span class="mark" style="width:90px"></span><span class="word" style="font-size:32px">COMET 2.0</span></div>
+  <div style="position:absolute; left:80px; right:80px; bottom:170px">
+    <p class="deva" style="font-size:64px; color:#e9a23b">वड़ा पाव ब्रेक</p>
+    <p class="serif" style="font-size:112px; margin-top:16px">Same city.<br/>Different stories.</p>
+    <p class="wide" style="margin-top:40px; font-size:20px">Chapter 02 · The Streets of Mumbai</p>
+  </div>
+</section>
+
+<script>
+  const mark = document.getElementById("mark").innerHTML;
+  document.querySelectorAll(".mark").forEach((m) => (m.innerHTML = mark));
+</script>
+</body>
+</html>
