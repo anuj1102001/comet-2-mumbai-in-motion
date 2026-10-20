@@ -1,13 +1,13 @@
 /**
- * COMET 2.0 identity. The mark is the designer's comet: a four-point star —
- * the same star as on the shoe — trailing a long tapered tail. Traced as a
- * single vector path from design/source/logo-reference.jpg.
+ * COMET 2.0 identity. The mark is the station roundel: the shoe's four-point star
+ * knocked out of a solid disc, the same seal that closes the box insert. It has no
+ * tail on purpose, so it can't be mistaken for any shooting-star logo.
  * The wordmark is a wide grotesk with "2.0" as a mono superscript.
  * Everything is vector/type: never baked into footage.
  */
 export const COMET_PATH =
-  "M65 345 Q380 262 668 196 Q694 165 700 80 Q742 188 915 185 Q762 230 755 355 Q712 262 676 266 Q380 300 65 345 Z";
-export const COMET_VIEWBOX = "60 75 860 285";
+  "M2 50 A48 48 0 1 0 98 50 A48 48 0 1 0 2 50 Z M50 13 Q53.6 46.4 75 50 Q53.6 53.6 50 87 Q46.4 53.6 25 50 Q46.4 46.4 50 13 Z";
+export const COMET_VIEWBOX = "0 0 100 100";
 
 export function CometMark({ className = "h-5 w-auto", title }: { className?: string; title?: string }) {
   return (
@@ -18,7 +18,7 @@ export function CometMark({ className = "h-5 w-auto", title }: { className?: str
       aria-label={title}
       aria-hidden={title ? undefined : true}
     >
-      <path d={COMET_PATH} fill="currentColor" />
+      <path d={COMET_PATH} fill="currentColor" fillRule="evenodd" />
     </svg>
   );
 }

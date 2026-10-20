@@ -449,7 +449,7 @@ export default function CaseStudy() {
                 <CometLogo size="lg" />
                 <p className="wide mt-4 text-xs font-semibold tracking-[0.42em]">MUMBAI IN MOTION</p>
               </div>
-              <p className="mt-4 text-xs leading-relaxed text-ink-3">The comet mark — the shoe&apos;s four-point star trailing a tapered tail — with the &ldquo;2.0&rdquo; and a wide-tracked collection line.</p>
+              <p className="mt-4 text-xs leading-relaxed text-ink-3">The roundel mark — the shoe&apos;s four-point star knocked out of a disc, the same seal that closes the box — with the &ldquo;2.0&rdquo; and a wide-tracked collection line.</p>
               <p className="eyebrow mt-6 text-[10px] text-ink-3">Palette</p>
               <ul className="mt-3 grid grid-cols-3 gap-3 text-xs">
                 {[

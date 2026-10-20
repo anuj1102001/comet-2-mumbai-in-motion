@@ -37,9 +37,9 @@
   <!-- 0 · logo -->
   <section class="scene" id="s0" style="background:var(--char);color:var(--paper)">
     <div id="logo" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:100%">
-      <svg id="mark" viewBox="60 75 860 285" style="height:calc(var(--u)*9);width:auto;display:block;margin:0 auto">
-        <defs><clipPath id="sweep"><rect id="sweepRect" x="60" y="60" width="0" height="320"/></clipPath></defs>
-        <path clip-path="url(#sweep)" fill="#eee5d3" d="M65 345 Q380 262 668 196 Q694 165 700 80 Q742 188 915 185 Q762 230 755 355 Q712 262 676 266 Q380 300 65 345 Z"/>
+      <svg id="mark" viewBox="0 0 100 100" style="height:calc(var(--u)*9);width:auto;display:block;margin:0 auto">
+        <defs><clipPath id="sweep"><rect id="sweepRect" x="0" y="0" width="0" height="100"/></clipPath></defs>
+        <path clip-path="url(#sweep)" fill="#eee5d3" fill-rule="evenodd" d="M2 50 A48 48 0 1 0 98 50 A48 48 0 1 0 2 50 Z M50 13 Q53.6 46.4 75 50 Q53.6 53.6 50 87 Q46.4 53.6 25 50 Q46.4 46.4 50 13 Z"/>
       </svg>
       <div id="word" class="wide" style="margin-top:calc(var(--u)*3);font-weight:600;font-size:calc(var(--u)*7.4);letter-spacing:.3em;white-space:nowrap">
         <span class="ch">C</span><span class="ch">O</span><span class="ch">M</span><span class="ch">E</span><span class="ch">T</span><sup class="ch" style="font-family:'IBM Plex Mono';font-size:.32em;letter-spacing:0;vertical-align:1.6em;margin-left:-.25em">2.0</sup>
@@ -98,7 +98,7 @@
     <img class="photo" data-src="06" id="endPhoto" />
     <div id="endVeil" style="position:absolute;inset:0;background:var(--paper)"></div>
     <div id="end" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:100%">
-      <svg viewBox="60 75 860 285" class="line" style="height:calc(var(--u)*6);width:auto;margin:0 auto;color:var(--ink)"><path fill="currentColor" d="M65 345 Q380 262 668 196 Q694 165 700 80 Q742 188 915 185 Q762 230 755 355 Q712 262 676 266 Q380 300 65 345 Z"/></svg>
+      <svg viewBox="0 0 100 100" class="line" style="height:calc(var(--u)*6);width:auto;margin:0 auto;color:var(--ink)"><path fill="currentColor" fill-rule="evenodd" d="M2 50 A48 48 0 1 0 98 50 A48 48 0 1 0 2 50 Z M50 13 Q53.6 46.4 75 50 Q53.6 53.6 50 87 Q46.4 53.6 25 50 Q46.4 46.4 50 13 Z"/></svg>
       <span class="line wide" style="margin-top:calc(var(--u)*2.2);font-weight:600;font-size:calc(var(--u)*5.6);letter-spacing:.3em;white-space:nowrap">COMET<sup style="font-family:'IBM Plex Mono';font-size:.34em;letter-spacing:0;vertical-align:1.5em;margin-left:-.25em">2.0</sup></span>
       <span class="line wide eyebrow" style="margin-top:calc(var(--u)*2);font-size:calc(var(--u)*1.6);letter-spacing:.5em">Mumbai in Motion</span>
       <span class="line display" style="margin-top:calc(var(--u)*3.4);font-size:calc(var(--u)*4.6);color:var(--navy);text-transform:uppercase">A city that never stops.</span>
@@ -168,11 +168,11 @@
   }
 
   window.render = function (t) {
-    // 0 · logo: the comet's tail sweeps in, the wordmark tracks in, then the scene dissolves
+    // 0 · logo: the roundel wipes in, the wordmark tracks in, then the scene dissolves
     {
       const s = $("#s0");
       s.style.opacity = 1 - inOut(prog(t, 2.3, 2.6));
-      $("#sweepRect").setAttribute("width", 880 * outCubic(prog(t, 0.15, 1.15)));
+      $("#sweepRect").setAttribute("width", 100 * outCubic(prog(t, 0.15, 1.15)));
       $$(".ch", s).forEach((c, i) => {
         const k = outExpo(prog(t, 0.75 + i * 0.07, 1.6 + i * 0.07));
         c.style.opacity = k;
